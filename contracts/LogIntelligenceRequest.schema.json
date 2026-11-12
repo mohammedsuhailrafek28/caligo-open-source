@@ -1,0 +1,81 @@
+{
+  "$defs": {
+    "LogLine": {
+      "additionalProperties": false,
+      "description": "One untrusted log line. Ids, scope, provenance and timestamps are assigned by the server, never taken from the caller.",
+      "properties": {
+        "text": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "LogLine",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "credentials_configured": {
+      "default": true,
+      "title": "Credentials Configured",
+      "type": "boolean"
+    },
+    "heartbeat_ok": {
+      "default": true,
+      "title": "Heartbeat Ok",
+      "type": "boolean"
+    },
+    "kind": {
+      "enum": [
+        "DUPLICATE_ORDERS",
+        "PAID_NOT_APPLIED",
+        "STALE_PAID_AFTER_REFUND",
+        "FALSE_HEALTHY"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "logs": {
+      "items": {
+        "$ref": "#/$defs/LogLine"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Logs",
+      "type": "array"
+    },
+    "payment_id": {
+      "anyOf": [
+        {
+          "maxLength": 36,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Payment Id"
+    },
+    "requested_mode": {
+      "default": "deterministic",
+      "enum": [
+        "deterministic",
+        "stanza"
+      ],
+      "title": "Requested Mode",
+      "type": "string"
+    }
+  },
+  "required": [
+    "kind",
+    "logs"
+  ],
+  "title": "LogIntelligenceRequest",
+  "type": "object"
+}

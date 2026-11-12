@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "status": {
+      "const": "challenge_sent_if_valid",
+      "default": "challenge_sent_if_valid",
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "title": "BuyerChallengeAck",
+  "type": "object"
+}

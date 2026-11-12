@@ -1,0 +1,16 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "csv": {
+      "maxLength": 300000,
+      "minLength": 1,
+      "title": "Csv",
+      "type": "string"
+    }
+  },
+  "required": [
+    "csv"
+  ],
+  "title": "MerchantLedgerImportRequest",
+  "type": "object"
+}

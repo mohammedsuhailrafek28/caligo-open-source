@@ -1,0 +1,205 @@
+{
+  "benchmark_version": "1",
+  "canonical_fixture_sha256": "1ad7e3c87bb2a872bffc10144616037f8c3e1cf11a492c9b600f20d4c5beae68",
+  "python_version": "3.12.10",
+  "rules": {
+    "status": "RUN",
+    "cases": [
+      {
+        "case_id": "duplicate-orders",
+        "expected": "duplicate_payment_orders",
+        "predicted": "duplicate_payment_orders",
+        "supporting_evidence_ids": [
+          "d1",
+          "d2",
+          "o1",
+          "o2"
+        ],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.16739999409765005
+      },
+      {
+        "case_id": "capture-failed",
+        "expected": "capture_order_divergence",
+        "predicted": "capture_order_divergence",
+        "supporting_evidence_ids": [
+          "p",
+          "o"
+        ],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.07909996202215552
+      },
+      {
+        "case_id": "refund-stale",
+        "expected": "stale_paid_after_refund",
+        "predicted": "stale_paid_after_refund",
+        "supporting_evidence_ids": [
+          "r",
+          "late"
+        ],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.07130001904442906
+      },
+      {
+        "case_id": "health-no-e2e",
+        "expected": "unproven_integration_health",
+        "predicted": "unproven_integration_health",
+        "supporting_evidence_ids": [
+          "h"
+        ],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.031200004741549492
+      },
+      {
+        "case_id": "duplicate-id-no-effects",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "supporting_evidence_ids": [],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.027099973522126675
+      },
+      {
+        "case_id": "missing",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "supporting_evidence_ids": [],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.015400000847876072
+      },
+      {
+        "case_id": "delayed",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "supporting_evidence_ids": [],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.021099986042827368
+      },
+      {
+        "case_id": "malicious-log",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "supporting_evidence_ids": [],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.01810002140700817
+      },
+      {
+        "case_id": "duplicate-inventory",
+        "expected": "duplicate_side_effects",
+        "predicted": "duplicate_side_effects",
+        "supporting_evidence_ids": [
+          "x1",
+          "x2"
+        ],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.05530001362785697
+      },
+      {
+        "case_id": "duplicate-fulfillment",
+        "expected": "duplicate_side_effects",
+        "predicted": "duplicate_side_effects",
+        "supporting_evidence_ids": [
+          "x1",
+          "x2"
+        ],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.04069996066391468
+      },
+      {
+        "case_id": "repeated-recovery",
+        "expected": "repeated_recovery",
+        "predicted": "repeated_recovery",
+        "supporting_evidence_ids": [
+          "r1",
+          "r2"
+        ],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.03060000017285347
+      },
+      {
+        "case_id": "health-e2e",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "supporting_evidence_ids": [],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.02540001878514886
+      },
+      {
+        "case_id": "distinct-payments",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "supporting_evidence_ids": [],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.020799983758479357
+      },
+      {
+        "case_id": "claim-not-provider",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "supporting_evidence_ids": [],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.01580000389367342
+      },
+      {
+        "case_id": "paid-newer-than-refund",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "supporting_evidence_ids": [],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.019499973859637976
+      },
+      {
+        "case_id": "contradictory-provider-observations",
+        "expected": "capture_order_divergence",
+        "predicted": "capture_order_divergence",
+        "supporting_evidence_ids": [
+          "p",
+          "o"
+        ],
+        "correct": true,
+        "citation_valid": true,
+        "unsupported_structured_claim": false,
+        "latency_ms": 0.03620004281401634
+      }
+    ],
+    "classification_accuracy": 1.0,
+    "citation_validity": 1.0,
+    "unsupported_structured_claim_frequency": 0.0,
+    "semantic_unsupported_claim_frequency": null,
+    "semantic_review": "NOT RUN",
+    "mean_latency_ms": 0.04218749745632522
+  },
+  "ai": {
+    "status": "NOT RUN",
+    "reason": "No actual model configured"
+  }
+}

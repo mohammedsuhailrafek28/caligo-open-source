@@ -1,0 +1,264 @@
+{
+  "$defs": {
+    "CaseCitation": {
+      "description": "A pointer to a stored record of the SAME project. `source`/`confidence`/`payload_sha256` are set for observations.",
+      "properties": {
+        "confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObservationConfidence"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/CaseCitationKind"
+        },
+        "payload_sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Payload Sha256"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObservationSource"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "kind",
+        "id"
+      ],
+      "title": "CaseCitation",
+      "type": "object"
+    },
+    "CaseCitationKind": {
+      "enum": [
+        "OBSERVATION",
+        "EVIDENCE_GAP",
+        "PAYMENT_RECORD",
+        "PAYMENT_EVENT",
+        "INSTRUCTION_VERSION",
+        "INSTRUCTION_CHANGE"
+      ],
+      "title": "CaseCitationKind",
+      "type": "string"
+    },
+    "FindingSeverity": {
+      "enum": [
+        "INFO",
+        "WARNING",
+        "CONFLICT"
+      ],
+      "title": "FindingSeverity",
+      "type": "string"
+    },
+    "ObservationConfidence": {
+      "enum": [
+        "PROVIDER_EVIDENCE",
+        "UNCONFIRMED_WEBHOOK",
+        "UNVERIFIED_CLAIM"
+      ],
+      "title": "ObservationConfidence",
+      "type": "string"
+    },
+    "ObservationSource": {
+      "enum": [
+        "PROVIDER_API",
+        "WEBHOOK",
+        "MERCHANT_IMPORT",
+        "SELLER_ENTRY"
+      ],
+      "title": "ObservationSource",
+      "type": "string"
+    },
+    "RecoveryCategory": {
+      "enum": [
+        "LEDGER_MISSING_PROVIDER_PAYMENT",
+        "CLAIM_NOT_CORROBORATED",
+        "AWAITING_PROVIDER_SYNC",
+        "AMOUNT_OR_CURRENCY_MISMATCH",
+        "DUPLICATE_REFERENCE",
+        "PROVIDER_STATE_REGRESSION",
+        "EVIDENCE_INCOMPLETE",
+        "EXTERNAL_PAYMENT",
+        "CLAIM_TIMING_ANOMALY",
+        "RECONCILIATION_ANOMALY",
+        "INSTRUCTION_INTEGRITY",
+        "INSTRUCTION_HOLD",
+        "PENDING_BUYER_AUTHORIZATION"
+      ],
+      "title": "RecoveryCategory",
+      "type": "string"
+    },
+    "RecoveryConfidence": {
+      "enum": [
+        "PROVIDER_EVIDENCE",
+        "CLAIM_VS_PROVIDER",
+        "UNVERIFIED_CLAIM_ONLY",
+        "INCOMPLETE_EVIDENCE",
+        "INSTRUCTION_RECORD",
+        "RECONCILIATION_RECORD"
+      ],
+      "title": "RecoveryConfidence",
+      "type": "string"
+    }
+  },
+  "description": "One evidence-cited, advisory recovery case. It is computed from stored records on every read and stored nowhere:\nnothing here changes a payment, a status, a hold or any evidence, and Caligo takes none of the recommended steps itself.",
+  "properties": {
+    "advisory_only": {
+      "const": true,
+      "default": true,
+      "title": "Advisory Only",
+      "type": "boolean"
+    },
+    "basis_sha256": {
+      "title": "Basis Sha256",
+      "type": "string"
+    },
+    "case_id": {
+      "title": "Case Id",
+      "type": "string"
+    },
+    "category": {
+      "$ref": "#/$defs/RecoveryCategory"
+    },
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/CaseCitation"
+      },
+      "title": "Citations",
+      "type": "array"
+    },
+    "citations_total": {
+      "title": "Citations Total",
+      "type": "integer"
+    },
+    "citations_verified": {
+      "title": "Citations Verified",
+      "type": "boolean"
+    },
+    "confidence": {
+      "$ref": "#/$defs/RecoveryConfidence"
+    },
+    "confidence_limits": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Confidence Limits",
+      "type": "array"
+    },
+    "current_state": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": "Current State",
+      "type": "object"
+    },
+    "derived_from": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Derived From",
+      "type": "array"
+    },
+    "evidence_complete": {
+      "title": "Evidence Complete",
+      "type": "boolean"
+    },
+    "explanation": {
+      "title": "Explanation",
+      "type": "string"
+    },
+    "payment_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Payment Id"
+    },
+    "prohibited_automated_actions": {
+      "default": [
+        "Issue, approve or request a refund",
+        "Capture, transfer or move funds",
+        "Cancel, void, send or modify a PayPal invoice",
+        "Mark a payment as paid or verified because of a merchant or seller claim",
+        "Release, override or bypass a payment-instruction hold",
+        "Edit or delete stored observations, gaps or history"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "title": "Prohibited Automated Actions",
+      "type": "array"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "recommended_next_action": {
+      "title": "Recommended Next Action",
+      "type": "string"
+    },
+    "severity": {
+      "$ref": "#/$defs/FindingSeverity"
+    }
+  },
+  "required": [
+    "case_id",
+    "project_id",
+    "payment_id",
+    "category",
+    "severity",
+    "confidence",
+    "confidence_limits",
+    "current_state",
+    "explanation",
+    "recommended_next_action",
+    "citations",
+    "citations_total",
+    "citations_verified",
+    "derived_from",
+    "evidence_complete",
+    "basis_sha256"
+  ],
+  "title": "RecoveryCase",
+  "type": "object"
+}

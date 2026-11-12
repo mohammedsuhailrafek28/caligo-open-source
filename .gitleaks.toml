@@ -1,0 +1,16 @@
+# Allowlist for known false positives. Each entry is a specific synthetic value, not a whole directory,
+# so a real secret added to the same files would still be reported.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Synthetic demo password, test Idempotency-Key header values, sample UUIDs, one docs-test phrase"
+regexTarget = "line"
+regexes = [
+  '''synthetic-placeholder-pw-1''',
+  '''Idempotency-Key"\s*:\s*"key-0123456789"''',
+  '''"authenticator_id":\s*"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"''',
+]
+paths = [
+  '''backend/tests/test_docs_consistency\.py''',
+]

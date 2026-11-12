@@ -1,0 +1,16 @@
+{
+  "additionalProperties": false,
+  "description": "Sending emails the recipient through PayPal, so the seller must re-type the stored address.",
+  "properties": {
+    "confirm_recipient_email": {
+      "format": "email",
+      "title": "Confirm Recipient Email",
+      "type": "string"
+    }
+  },
+  "required": [
+    "confirm_recipient_email"
+  ],
+  "title": "SendInvoiceRequest",
+  "type": "object"
+}

@@ -1,0 +1,50 @@
+{
+  "$defs": {
+    "DeliveryEventType": {
+      "enum": [
+        "LINK_SENT",
+        "LINK_ACCESSED",
+        "FILE_RELEASED",
+        "BUYER_ACKNOWLEDGED"
+      ],
+      "title": "DeliveryEventType",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "actor_type": {
+      "title": "Actor Type",
+      "type": "string"
+    },
+    "auth_method": {
+      "title": "Auth Method",
+      "type": "string"
+    },
+    "deliverable_id": {
+      "title": "Deliverable Id",
+      "type": "string"
+    },
+    "event_type": {
+      "$ref": "#/$defs/DeliveryEventType"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "occurred_at": {
+      "format": "date-time",
+      "title": "Occurred At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "deliverable_id",
+    "event_type",
+    "occurred_at",
+    "actor_type",
+    "auth_method"
+  ],
+  "title": "DeliveryEventView",
+  "type": "object"
+}

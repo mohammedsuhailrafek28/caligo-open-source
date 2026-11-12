@@ -1,0 +1,131 @@
+{
+  "$defs": {
+    "FindingCode": {
+      "enum": [
+        "CLAIM_CORROBORATED",
+        "CLAIM_AMOUNT_MISMATCH",
+        "CLAIM_CURRENCY_MISMATCH",
+        "CLAIM_NOT_IN_PROVIDER_EVIDENCE",
+        "CLAIM_AWAITING_PROVIDER_EVIDENCE",
+        "CLAIM_WITHOUT_TRANSACTION_REFERENCE",
+        "CLAIM_TIMESTAMP_IN_FUTURE",
+        "DELAYED_OBSERVATION",
+        "OUT_OF_ORDER_OBSERVATION",
+        "CONFLICTING_CLAIMS",
+        "DUPLICATE_CLAIM",
+        "PROVIDER_PAYMENT_NOT_IN_LEDGER",
+        "PROVIDER_REPORTS_EXTERNAL_PAYMENT",
+        "PROVIDER_STATE_REGRESSION",
+        "CLAIMED_PAYMENTS_EXCEED_INVOICE",
+        "CLAIMED_REFUNDS_EXCEED_PAYMENTS",
+        "CLAIMED_TOTAL_DIFFERS_FROM_PROVIDER",
+        "CLAIM_MATCHES_EXTERNAL_RECORD",
+        "PROVIDER_TRANSACTION_CHANGED",
+        "PROVIDER_EVIDENCE_INCOMPLETE",
+        "CLAIM_PROVIDER_EVIDENCE_INCOMPLETE",
+        "COMPARISON_INPUT_TRUNCATED"
+      ],
+      "title": "FindingCode",
+      "type": "string"
+    },
+    "FindingSeverity": {
+      "enum": [
+        "INFO",
+        "WARNING",
+        "CONFLICT"
+      ],
+      "title": "FindingSeverity",
+      "type": "string"
+    },
+    "ObservationCitation": {
+      "properties": {
+        "confidence": {
+          "$ref": "#/$defs/ObservationConfidence"
+        },
+        "observation_id": {
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "payload_sha256": {
+          "title": "Payload Sha256",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/ObservationSource"
+        }
+      },
+      "required": [
+        "observation_id",
+        "source",
+        "confidence",
+        "payload_sha256"
+      ],
+      "title": "ObservationCitation",
+      "type": "object"
+    },
+    "ObservationConfidence": {
+      "enum": [
+        "PROVIDER_EVIDENCE",
+        "UNCONFIRMED_WEBHOOK",
+        "UNVERIFIED_CLAIM"
+      ],
+      "title": "ObservationConfidence",
+      "type": "string"
+    },
+    "ObservationSource": {
+      "enum": [
+        "PROVIDER_API",
+        "WEBHOOK",
+        "MERCHANT_IMPORT",
+        "SELLER_ENTRY"
+      ],
+      "title": "ObservationSource",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/ObservationCitation"
+      },
+      "title": "Citations",
+      "type": "array"
+    },
+    "citations_total": {
+      "default": 0,
+      "title": "Citations Total",
+      "type": "integer"
+    },
+    "code": {
+      "$ref": "#/$defs/FindingCode"
+    },
+    "gap_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Gap Ids",
+      "type": "array"
+    },
+    "payment_id": {
+      "title": "Payment Id",
+      "type": "string"
+    },
+    "severity": {
+      "$ref": "#/$defs/FindingSeverity"
+    },
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code",
+    "severity",
+    "summary",
+    "payment_id",
+    "citations"
+  ],
+  "title": "ObservationFinding",
+  "type": "object"
+}

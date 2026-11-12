@@ -1,0 +1,55 @@
+{
+  "properties": {
+    "assessment": {
+      "additionalProperties": true,
+      "title": "Assessment",
+      "type": "object"
+    },
+    "authoritative_policy": {
+      "default": "app.integration_health (S3.5) deterministic assessor",
+      "title": "Authoritative Policy",
+      "type": "string"
+    },
+    "caller_reported_capabilities": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Caller Reported Capabilities",
+      "type": "array"
+    },
+    "environment": {
+      "const": "simulation",
+      "default": "simulation",
+      "title": "Environment",
+      "type": "string"
+    },
+    "inputs_provenance": {
+      "default": "configuration and heartbeat are caller-reported simulation inputs at the assessment time; the transaction proof is a provider-PAID payment whose merchant order the safe processor applied, and it expires with the freshness window",
+      "title": "Inputs Provenance",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "simulated": {
+      "const": true,
+      "default": true,
+      "title": "Simulated",
+      "type": "boolean"
+    },
+    "summary": {
+      "additionalProperties": true,
+      "title": "Summary",
+      "type": "object"
+    }
+  },
+  "required": [
+    "project_id",
+    "assessment",
+    "summary",
+    "caller_reported_capabilities"
+  ],
+  "title": "IntegrationHealthResponse",
+  "type": "object"
+}

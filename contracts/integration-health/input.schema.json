@@ -1,0 +1,212 @@
+{
+  "$defs": {
+    "HealthEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "integration_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Integration Id",
+          "type": "string"
+        },
+        "environment": {
+          "enum": [
+            "simulation",
+            "sandbox"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "event_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "check": {
+          "enum": [
+            "configuration",
+            "connectivity",
+            "transaction",
+            "webhook",
+            "provider_capture",
+            "order_completion",
+            "health_claim"
+          ],
+          "title": "Check",
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "success",
+            "failure",
+            "unknown"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "check_runner",
+            "provider",
+            "merchant",
+            "simulation_runner",
+            "operator_claim",
+            "untrusted_log"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "received_at": {
+          "format": "date-time",
+          "title": "Received At",
+          "type": "string"
+        },
+        "transaction_id": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.:-]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transaction Id"
+        },
+        "evidence_refs": {
+          "default": [],
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.:-]+$",
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "diagnostic_text": {
+          "default": "",
+          "maxLength": 4000,
+          "title": "Diagnostic Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "project_id",
+        "integration_id",
+        "environment",
+        "event_id",
+        "check",
+        "outcome",
+        "source",
+        "checked_at",
+        "received_at"
+      ],
+      "title": "HealthEvidence",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "integration_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Integration Id",
+      "type": "string"
+    },
+    "environment": {
+      "enum": [
+        "simulation",
+        "sandbox"
+      ],
+      "title": "Environment",
+      "type": "string"
+    },
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "max_age_seconds": {
+      "default": 86400,
+      "exclusiveMinimum": 0,
+      "maximum": 2592000,
+      "title": "Max Age Seconds",
+      "type": "integer"
+    },
+    "webhook_required": {
+      "default": true,
+      "title": "Webhook Required",
+      "type": "boolean"
+    },
+    "incomplete_evidence_warnings": {
+      "default": [],
+      "items": {
+        "maxLength": 1000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 100,
+      "title": "Incomplete Evidence Warnings",
+      "type": "array"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/HealthEvidence"
+      },
+      "maxItems": 2000,
+      "title": "Evidence",
+      "type": "array"
+    }
+  },
+  "required": [
+    "project_id",
+    "integration_id",
+    "environment",
+    "as_of",
+    "evidence"
+  ],
+  "title": "HealthInput",
+  "type": "object"
+}

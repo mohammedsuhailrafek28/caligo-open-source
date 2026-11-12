@@ -1,0 +1,54 @@
+{
+  "baseline": "c6f1ef7ecd985730a1ee4829e593e6de0d5c0bd0",
+  "regression": {
+    "tests": 1338,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  },
+  "regression_passed": 1337,
+  "focused_nlp_and_s3": {
+    "passed": 65,
+    "skipped": 1,
+    "coverage_percent": 98
+  },
+  "real_stanza_smoke": {
+    "passed": 1,
+    "network_blocked": true
+  },
+  "demos": {
+    "integrated_recovery": {
+      "passed": 40,
+      "failed": 0
+    },
+    "original_backend": {
+      "passed": 19,
+      "failed": 0
+    }
+  },
+  "security": {
+    "bandit_module_findings": 0,
+    "bandit_batch_runner_low_findings": 2,
+    "batch_runner_review": "Fixed Python/pytest argv; trusted repository files; no shell or log input",
+    "pip_check": "PASS",
+    "dependency_audit": "No known vulnerabilities in audited installed packages",
+    "audit_skipped": [
+      "editable project",
+      "torch 2.15.0+cpu wheel not found by PyPI advisory lookup"
+    ],
+    "torch_base_version_advisory_check": "torch==2.15.0: no known vulnerabilities",
+    "secret_scan": "PASS"
+  },
+  "normalized_source_sha256": {
+    "benchmark.py": "640aedea81c0e8651b335d76388190467cbe8934fa0be6019936a8759766dd05",
+    "bridge.py": "8c200632bfee942c9c030f21f592a7a2cb353ce9c4ee98a13279f822abff6d73",
+    "exact.py": "b5d32c00fabce08f966053efb4994b74fa91a9354e3fb6b0c0d1caea9974a791",
+    "extractor.py": "820a0a8561acaf96f847664461d8595c35eb7e9332c5c7cfa9ac7135e8a8aa1a",
+    "models.py": "77660336deee7ffad1592fa1065c0fda87e555d06a84bfcd1a552537f5cf6b14",
+    "security.py": "dc69c4b9ca3c4f6cbc32b057f0344067990bf39dfff31b5455d8a26dee0cb073",
+    "setup_models.py": "8870ac2e5c57a4ac1f3c9b1c44c01767fa89bee8bd5117beb9827d9d5ae5c37d",
+    "stanza_adapter.py": "fd80ae8e5e890f9d382feec3b71aa8fee7d1e2039211a5071025fe40f81fb648",
+    "vocabulary.py": "a6978bf3b77f15b4a4b952c8d0a0b398fe2a757fc87ed3e71f4f14f1a6220a0a",
+    "__init__.py": "ba53271edc278cea83383a86fe415e38e983c4d2817d663f34ec630b503610a9"
+  }
+}

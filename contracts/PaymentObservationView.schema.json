@@ -1,0 +1,189 @@
+{
+  "$defs": {
+    "ObservationConfidence": {
+      "enum": [
+        "PROVIDER_EVIDENCE",
+        "UNCONFIRMED_WEBHOOK",
+        "UNVERIFIED_CLAIM"
+      ],
+      "title": "ObservationConfidence",
+      "type": "string"
+    },
+    "ObservationKind": {
+      "enum": [
+        "PAYMENT",
+        "REFUND",
+        "INVOICE_STATE"
+      ],
+      "title": "ObservationKind",
+      "type": "string"
+    },
+    "ObservationSource": {
+      "enum": [
+        "PROVIDER_API",
+        "WEBHOOK",
+        "MERCHANT_IMPORT",
+        "SELLER_ENTRY"
+      ],
+      "title": "ObservationSource",
+      "type": "string"
+    }
+  },
+  "description": "One recorded observation. `confidence` says what it is worth: only PROVIDER_EVIDENCE came from the provider.",
+  "properties": {
+    "amount_minor": {
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "asserted_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Asserted At"
+    },
+    "confidence": {
+      "$ref": "#/$defs/ObservationConfidence"
+    },
+    "currency": {
+      "title": "Currency",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "import_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Import Id"
+    },
+    "instrument": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Instrument"
+    },
+    "kind": {
+      "$ref": "#/$defs/ObservationKind"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Note"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "title": "Observed At",
+      "type": "string"
+    },
+    "payload_sha256": {
+      "title": "Payload Sha256",
+      "type": "string"
+    },
+    "payment_id": {
+      "title": "Payment Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "provenance": {
+      "title": "Provenance",
+      "type": "string"
+    },
+    "provider_provenance": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Provider Provenance"
+    },
+    "provider_state": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Provider State"
+    },
+    "source": {
+      "$ref": "#/$defs/ObservationSource"
+    },
+    "source_event_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Source Event Id"
+    },
+    "source_reference": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Source Reference"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "payment_id",
+    "import_id",
+    "source",
+    "kind",
+    "confidence",
+    "amount_minor",
+    "currency",
+    "source_event_id",
+    "source_reference",
+    "provider_state",
+    "instrument",
+    "asserted_at",
+    "observed_at",
+    "payload_sha256",
+    "provenance",
+    "note"
+  ],
+  "title": "PaymentObservationView",
+  "type": "object"
+}

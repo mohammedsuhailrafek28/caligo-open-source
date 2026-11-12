@@ -1,0 +1,16 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "token": {
+      "maxLength": 200,
+      "minLength": 20,
+      "title": "Token",
+      "type": "string"
+    }
+  },
+  "required": [
+    "token"
+  ],
+  "title": "BuyerChallengeRequest",
+  "type": "object"
+}

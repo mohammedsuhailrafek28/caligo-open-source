@@ -1,0 +1,43 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "credentials_configured": {
+      "default": true,
+      "title": "Credentials Configured",
+      "type": "boolean"
+    },
+    "heartbeat_ok": {
+      "default": true,
+      "title": "Heartbeat Ok",
+      "type": "boolean"
+    },
+    "kind": {
+      "enum": [
+        "DUPLICATE_ORDERS",
+        "PAID_NOT_APPLIED",
+        "STALE_PAID_AFTER_REFUND",
+        "FALSE_HEALTHY"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "payment_id": {
+      "anyOf": [
+        {
+          "maxLength": 36,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Payment Id"
+    }
+  },
+  "required": [
+    "kind"
+  ],
+  "title": "RecoveryPlanCreate",
+  "type": "object"
+}

@@ -1,0 +1,85 @@
+{
+  "$defs": {
+    "CaseCitationKind": {
+      "enum": [
+        "OBSERVATION",
+        "EVIDENCE_GAP",
+        "PAYMENT_RECORD",
+        "PAYMENT_EVENT",
+        "INSTRUCTION_VERSION",
+        "INSTRUCTION_CHANGE"
+      ],
+      "title": "CaseCitationKind",
+      "type": "string"
+    },
+    "ObservationConfidence": {
+      "enum": [
+        "PROVIDER_EVIDENCE",
+        "UNCONFIRMED_WEBHOOK",
+        "UNVERIFIED_CLAIM"
+      ],
+      "title": "ObservationConfidence",
+      "type": "string"
+    },
+    "ObservationSource": {
+      "enum": [
+        "PROVIDER_API",
+        "WEBHOOK",
+        "MERCHANT_IMPORT",
+        "SELLER_ENTRY"
+      ],
+      "title": "ObservationSource",
+      "type": "string"
+    }
+  },
+  "description": "A pointer to a stored record of the SAME project. `source`/`confidence`/`payload_sha256` are set for observations.",
+  "properties": {
+    "confidence": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ObservationConfidence"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/CaseCitationKind"
+    },
+    "payload_sha256": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Payload Sha256"
+    },
+    "source": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ObservationSource"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "kind",
+    "id"
+  ],
+  "title": "CaseCitation",
+  "type": "object"
+}

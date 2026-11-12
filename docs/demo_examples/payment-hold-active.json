@@ -1,0 +1,11 @@
+{
+  "active": true,
+  "pending_change_ids": [
+    "0015b111-f5a3-474c-ae98-7a5bf9df4e85"
+  ],
+  "reasons": [
+    "UNVERIFIED_INSTRUCTION_CHANGE"
+  ],
+  "release_requires": "BUYER_SIDE_VERIFICATION",
+  "scope": "CALIGO_OPERATIONS_ONLY"
+}

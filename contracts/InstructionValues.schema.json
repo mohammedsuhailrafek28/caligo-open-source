@@ -1,0 +1,35 @@
+{
+  "properties": {
+    "amount_minor": {
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "currency": {
+      "title": "Currency",
+      "type": "string"
+    },
+    "merchant_email": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Merchant Email"
+    },
+    "recipient_email": {
+      "title": "Recipient Email",
+      "type": "string"
+    }
+  },
+  "required": [
+    "merchant_email",
+    "recipient_email",
+    "currency",
+    "amount_minor"
+  ],
+  "title": "InstructionValues",
+  "type": "object"
+}

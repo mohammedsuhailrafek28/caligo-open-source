@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "destination": {
+      "maxLength": 254,
+      "minLength": 3,
+      "title": "Destination",
+      "type": "string"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "maxLength": 500,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    }
+  },
+  "required": [
+    "destination"
+  ],
+  "title": "PayeeDestinationChange",
+  "type": "object"
+}

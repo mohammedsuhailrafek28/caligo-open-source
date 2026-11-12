@@ -1,0 +1,64 @@
+{
+  "$defs": {
+    "BuyerDecision": {
+      "description": "Distinct buyer acts. Acknowledging receipt is not accepting the work, and neither is a payment dispute.",
+      "enum": [
+        "APPROVE_CHANGE",
+        "REJECT_CHANGE",
+        "ACKNOWLEDGE_DELIVERY",
+        "ACCEPT_DELIVERY",
+        "DISPUTE_DELIVERY"
+      ],
+      "title": "BuyerDecision",
+      "type": "string"
+    },
+    "BuyerRequestKind": {
+      "enum": [
+        "SCOPE_CHANGE_APPROVAL",
+        "DELIVERY_REVIEW"
+      ],
+      "title": "BuyerRequestKind",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "allowed_decisions": {
+      "items": {
+        "$ref": "#/$defs/BuyerDecision"
+      },
+      "title": "Allowed Decisions",
+      "type": "array"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/BuyerRequestKind"
+    },
+    "project_title": {
+      "title": "Project Title",
+      "type": "string"
+    },
+    "session_token": {
+      "title": "Session Token",
+      "type": "string"
+    },
+    "subject": {
+      "additionalProperties": true,
+      "title": "Subject",
+      "type": "object"
+    }
+  },
+  "required": [
+    "session_token",
+    "expires_at",
+    "kind",
+    "project_title",
+    "subject",
+    "allowed_decisions"
+  ],
+  "title": "BuyerSessionResponse",
+  "type": "object"
+}

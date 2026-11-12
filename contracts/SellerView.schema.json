@@ -1,0 +1,24 @@
+{
+  "properties": {
+    "display_name": {
+      "title": "Display Name",
+      "type": "string"
+    },
+    "email": {
+      "format": "email",
+      "title": "Email",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "email",
+    "display_name"
+  ],
+  "title": "SellerView",
+  "type": "object"
+}

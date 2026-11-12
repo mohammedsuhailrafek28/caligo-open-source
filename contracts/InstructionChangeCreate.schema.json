@@ -1,0 +1,48 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "amount_minor": {
+      "maximum": 2000000000,
+      "minimum": 1,
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "currency": {
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "type": "string"
+    },
+    "merchant_email": {
+      "anyOf": [
+        {
+          "format": "email",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Merchant Email"
+    },
+    "reason": {
+      "maxLength": 500,
+      "minLength": 3,
+      "title": "Reason",
+      "type": "string"
+    },
+    "recipient_email": {
+      "format": "email",
+      "title": "Recipient Email",
+      "type": "string"
+    }
+  },
+  "required": [
+    "recipient_email",
+    "currency",
+    "amount_minor",
+    "reason"
+  ],
+  "title": "InstructionChangeCreate",
+  "type": "object"
+}

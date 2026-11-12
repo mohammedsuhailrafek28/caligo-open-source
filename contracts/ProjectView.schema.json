@@ -1,0 +1,48 @@
+{
+  "$defs": {
+    "ProjectStatus": {
+      "enum": [
+        "DRAFT",
+        "INVOICED",
+        "PAID",
+        "DELIVERED",
+        "DISPUTED"
+      ],
+      "title": "ProjectStatus",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "seller_id": {
+      "title": "Seller Id",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/ProjectStatus"
+    },
+    "title": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "seller_id",
+    "title",
+    "status",
+    "created_at"
+  ],
+  "title": "ProjectView",
+  "type": "object"
+}

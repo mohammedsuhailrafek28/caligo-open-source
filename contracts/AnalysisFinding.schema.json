@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "FindingBasis": {
+      "enum": [
+        "RULE_BASED_DEMO",
+        "LLM"
+      ],
+      "title": "FindingBasis",
+      "type": "string"
+    },
+    "FindingCategory": {
+      "enum": [
+        "REQUIREMENT_COVERAGE",
+        "SCOPE_MISMATCH",
+        "CHANGE_AUTHORIZATION",
+        "MISSING_EVIDENCE",
+        "CONFLICTING_EVIDENCE",
+        "DELIVERY_ACCEPTANCE"
+      ],
+      "title": "FindingCategory",
+      "type": "string"
+    },
+    "FindingConfidence": {
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "title": "FindingConfidence",
+      "type": "string"
+    },
+    "FindingStatus": {
+      "enum": [
+        "SUPPORTED",
+        "UNSUPPORTED",
+        "AMBIGUOUS"
+      ],
+      "title": "FindingStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "One judgment. It is an AI/heuristic opinion, never a fact: it must cite stored records and always needs human review.",
+  "properties": {
+    "basis": {
+      "$ref": "#/$defs/FindingBasis"
+    },
+    "category": {
+      "$ref": "#/$defs/FindingCategory"
+    },
+    "claim": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Claim",
+      "type": "string"
+    },
+    "confidence": {
+      "$ref": "#/$defs/FindingConfidence"
+    },
+    "explanation": {
+      "maxLength": 2000,
+      "title": "Explanation",
+      "type": "string"
+    },
+    "human_review_required": {
+      "const": true,
+      "title": "Human Review Required",
+      "type": "boolean"
+    },
+    "id": {
+      "maxLength": 40,
+      "minLength": 1,
+      "title": "Id",
+      "type": "string"
+    },
+    "source_refs": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 50,
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "status": {
+      "$ref": "#/$defs/FindingStatus"
+    }
+  },
+  "required": [
+    "id",
+    "category",
+    "claim",
+    "status",
+    "confidence",
+    "basis",
+    "explanation",
+    "human_review_required"
+  ],
+  "title": "AnalysisFinding",
+  "type": "object"
+}

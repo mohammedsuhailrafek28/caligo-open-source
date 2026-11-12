@@ -1,0 +1,188 @@
+{
+  "$defs": {
+    "AuthenticatorTrustBasis": {
+      "enum": [
+        "OPERATOR_ESTABLISHED"
+      ],
+      "title": "AuthenticatorTrustBasis",
+      "type": "string"
+    },
+    "ChangeResolution": {
+      "enum": [
+        "WITHDRAWN"
+      ],
+      "title": "ChangeResolution",
+      "type": "string"
+    },
+    "InstructionChangeVerificationView": {
+      "properties": {
+        "applied_instruction_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Applied Instruction Id"
+        },
+        "change_id": {
+          "title": "Change Id",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "from_fingerprint": {
+          "title": "From Fingerprint",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "outcome": {
+          "$ref": "#/$defs/VerificationOutcome"
+        },
+        "proposed_fingerprint": {
+          "title": "Proposed Fingerprint",
+          "type": "string"
+        },
+        "trust_basis": {
+          "$ref": "#/$defs/AuthenticatorTrustBasis"
+        }
+      },
+      "required": [
+        "id",
+        "change_id",
+        "outcome",
+        "trust_basis",
+        "applied_instruction_id",
+        "from_fingerprint",
+        "proposed_fingerprint",
+        "created_at"
+      ],
+      "title": "InstructionChangeVerificationView",
+      "type": "object"
+    },
+    "InstructionProvenance": {
+      "enum": [
+        "SELLER_ENTERED",
+        "INVOICE_REQUEST"
+      ],
+      "title": "InstructionProvenance",
+      "type": "string"
+    },
+    "VerificationOutcome": {
+      "enum": [
+        "APPLIED",
+        "REJECTED"
+      ],
+      "title": "VerificationOutcome",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "amount_minor": {
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "currency": {
+      "title": "Currency",
+      "type": "string"
+    },
+    "from_fingerprint": {
+      "title": "From Fingerprint",
+      "type": "string"
+    },
+    "from_instruction_id": {
+      "title": "From Instruction Id",
+      "type": "string"
+    },
+    "holds_payment_operations": {
+      "default": true,
+      "title": "Holds Payment Operations",
+      "type": "boolean"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "merchant_email": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Merchant Email"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "proposed_fingerprint": {
+      "title": "Proposed Fingerprint",
+      "type": "string"
+    },
+    "provenance": {
+      "$ref": "#/$defs/InstructionProvenance"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    },
+    "recipient_email": {
+      "title": "Recipient Email",
+      "type": "string"
+    },
+    "resolution": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ChangeResolution"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "verification": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/InstructionChangeVerificationView"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "from_instruction_id",
+    "from_fingerprint",
+    "merchant_email",
+    "recipient_email",
+    "currency",
+    "amount_minor",
+    "proposed_fingerprint",
+    "reason",
+    "provenance",
+    "created_at"
+  ],
+  "title": "InstructionChangeView",
+  "type": "object"
+}

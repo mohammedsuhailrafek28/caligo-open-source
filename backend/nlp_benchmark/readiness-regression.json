@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "all_files_executed": true,
+  "file_count": 43,
+  "totals": {
+    "tests": 1363,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "batches": [
+    {
+      "files": [
+        "diagnosis_tests/test_diagnosis.py",
+        "health_tests/test_health.py",
+        "nlp_tests/test_adapter.py",
+        "nlp_tests/test_integration.py",
+        "nlp_tests/test_logs.py",
+        "nlp_tests/test_real_stanza.py"
+      ],
+      "exit_code": 0,
+      "tests": 122,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2
+    },
+    {
+      "files": [
+        "nlp_tests/test_startup.py",
+        "tests/test_analysis.py",
+        "tests/test_auth.py",
+        "tests/test_buyer_approvals.py",
+        "tests/test_contracts.py",
+        "tests/test_demo_backend.py"
+      ],
+      "exit_code": 0,
+      "tests": 231,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_demo_flow.py",
+        "tests/test_demo_recovery_integrated.py",
+        "tests/test_dev_outbox.py",
+        "tests/test_docs_consistency.py",
+        "tests/test_evidence_artifacts.py",
+        "tests/test_evidence_report.py"
+      ],
+      "exit_code": 0,
+      "tests": 81,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_foundation.py",
+        "tests/test_hold_release_integrity.py",
+        "tests/test_instruction_integrity.py",
+        "tests/test_instruction_verification.py",
+        "tests/test_migrations.py",
+        "tests/test_payment_observations.py"
+      ],
+      "exit_code": 0,
+      "tests": 172,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_payments.py",
+        "tests/test_paypal_adapter.py",
+        "tests/test_project_lifecycle.py",
+        "tests/test_projects.py",
+        "tests/test_r1_hardening.py",
+        "tests/test_r2_acceptance.py"
+      ],
+      "exit_code": 0,
+      "tests": 222,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_r3_acceptance.py",
+        "tests/test_recovery_cases.py",
+        "tests/test_s4_integration.py",
+        "tests/test_sandbox_flow.py",
+        "tests/test_sandbox_readonly.py",
+        "tests/test_sandbox_smoke.py"
+      ],
+      "exit_code": 0,
+      "tests": 333,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_schema_adoption.py",
+        "tests/test_scope_baselines.py",
+        "tests/test_secret_scan.py",
+        "tests/test_stage2d_fixes.py",
+        "tests/test_state_recovery.py",
+        "tests/test_state_simulation.py"
+      ],
+      "exit_code": 0,
+      "tests": 163,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_unified_report.py"
+      ],
+      "exit_code": 0,
+      "tests": 39,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

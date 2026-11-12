@@ -1,0 +1,89 @@
+{
+  "additionalProperties": false,
+  "description": "Registers delivery evidence. Server-decided fields (hash of content, ingestion time, version, ids) cannot be supplied.",
+  "properties": {
+    "asserted_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Asserted At"
+    },
+    "content_text": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Content Text"
+    },
+    "declared_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Declared Sha256"
+    },
+    "description": {
+      "default": "",
+      "maxLength": 2000,
+      "title": "Description",
+      "type": "string"
+    },
+    "media_type": {
+      "default": "application/octet-stream",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Media Type",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 255,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "requirement_keys": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 50,
+      "title": "Requirement Keys",
+      "type": "array"
+    },
+    "supersedes_artifact_id": {
+      "anyOf": [
+        {
+          "maxLength": 36,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Supersedes Artifact Id"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "title": "ArtifactCreate",
+  "type": "object"
+}

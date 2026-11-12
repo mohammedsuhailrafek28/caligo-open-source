@@ -1,0 +1,71 @@
+{
+  "$defs": {
+    "AuthenticatorTrustBasis": {
+      "enum": [
+        "OPERATOR_ESTABLISHED"
+      ],
+      "title": "AuthenticatorTrustBasis",
+      "type": "string"
+    },
+    "VerificationOutcome": {
+      "enum": [
+        "APPLIED",
+        "REJECTED"
+      ],
+      "title": "VerificationOutcome",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "applied_instruction_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Applied Instruction Id"
+    },
+    "change_id": {
+      "title": "Change Id",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "from_fingerprint": {
+      "title": "From Fingerprint",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "outcome": {
+      "$ref": "#/$defs/VerificationOutcome"
+    },
+    "proposed_fingerprint": {
+      "title": "Proposed Fingerprint",
+      "type": "string"
+    },
+    "trust_basis": {
+      "$ref": "#/$defs/AuthenticatorTrustBasis"
+    }
+  },
+  "required": [
+    "id",
+    "change_id",
+    "outcome",
+    "trust_basis",
+    "applied_instruction_id",
+    "from_fingerprint",
+    "proposed_fingerprint",
+    "created_at"
+  ],
+  "title": "InstructionChangeVerificationView",
+  "type": "object"
+}

@@ -1,0 +1,269 @@
+{
+  "$defs": {
+    "DiagnosisEvidenceView": {
+      "properties": {
+        "effect_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effect Key"
+        },
+        "entity_id": {
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "event_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Event Id"
+        },
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "observed_at": {
+          "format": "date-time",
+          "title": "Observed At",
+          "type": "string"
+        },
+        "occurred_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Occurred At"
+        },
+        "provenance_label": {
+          "title": "Provenance Label",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "provider",
+            "merchant",
+            "simulation",
+            "operator",
+            "untrusted_log"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "source",
+        "kind",
+        "entity_id",
+        "status",
+        "observed_at",
+        "provenance_label"
+      ],
+      "title": "DiagnosisEvidenceView",
+      "type": "object"
+    },
+    "LogSourceView": {
+      "properties": {
+        "environment": {
+          "enum": [
+            "simulation",
+            "sandbox"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "evidence_ref": {
+          "title": "Evidence Ref",
+          "type": "string"
+        },
+        "log_id": {
+          "title": "Log Id",
+          "type": "string"
+        },
+        "provenance": {
+          "const": "untrusted_log",
+          "default": "untrusted_log",
+          "title": "Provenance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_ref",
+        "log_id",
+        "environment"
+      ],
+      "title": "LogSourceView",
+      "type": "object"
+    }
+  },
+  "description": "Advisory only. Log hypotheses are untrusted language clues, never verified payment facts; nothing here changes any record.",
+  "properties": {
+    "advisory_only": {
+      "const": true,
+      "default": true,
+      "title": "Advisory Only",
+      "type": "boolean"
+    },
+    "authority": {
+      "default": "Advisory text for a human. Log-derived hypotheses are untrusted and are not payment facts; exact candidates are unverified. Nothing here approves, previews, executes or changes a recovery, contacts a provider or moves funds.",
+      "title": "Authority",
+      "type": "string"
+    },
+    "case_id": {
+      "title": "Case Id",
+      "type": "string"
+    },
+    "effective_mode": {
+      "enum": [
+        "deterministic",
+        "stanza"
+      ],
+      "title": "Effective Mode",
+      "type": "string"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/DiagnosisEvidenceView"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "evidence_fingerprint": {
+      "title": "Evidence Fingerprint",
+      "type": "string"
+    },
+    "fallback_reason": {
+      "anyOf": [
+        {
+          "enum": [
+            "model_not_configured",
+            "dependency_missing",
+            "insufficient_memory",
+            "cache_missing",
+            "manifest_missing",
+            "cache_integrity_failed",
+            "version_mismatch",
+            "model_unavailable",
+            "inference_failed"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Fallback Reason"
+    },
+    "human_review_required": {
+      "const": true,
+      "default": true,
+      "title": "Human Review Required",
+      "type": "boolean"
+    },
+    "incomplete_evidence_warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Incomplete Evidence Warnings",
+      "type": "array"
+    },
+    "kind": {
+      "enum": [
+        "DUPLICATE_ORDERS",
+        "PAID_NOT_APPLIED",
+        "STALE_PAID_AFTER_REFUND",
+        "FALSE_HEALTHY"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "log_lines_analyzed": {
+      "title": "Log Lines Analyzed",
+      "type": "integer"
+    },
+    "log_sources": {
+      "items": {
+        "$ref": "#/$defs/LogSourceView"
+      },
+      "title": "Log Sources",
+      "type": "array"
+    },
+    "observation_window_complete": {
+      "title": "Observation Window Complete",
+      "type": "boolean"
+    },
+    "payment_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Payment Id"
+    },
+    "report": {
+      "additionalProperties": true,
+      "title": "Report",
+      "type": "object"
+    },
+    "requested_mode": {
+      "enum": [
+        "deterministic",
+        "stanza"
+      ],
+      "title": "Requested Mode",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "requested_mode",
+    "effective_mode",
+    "case_id",
+    "kind",
+    "payment_id",
+    "evidence_fingerprint",
+    "log_lines_analyzed",
+    "log_sources",
+    "evidence",
+    "report",
+    "observation_window_complete",
+    "incomplete_evidence_warnings"
+  ],
+  "title": "LogIntelligenceResponse",
+  "type": "object"
+}

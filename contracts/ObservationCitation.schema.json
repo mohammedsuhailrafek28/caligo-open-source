@@ -1,0 +1,47 @@
+{
+  "$defs": {
+    "ObservationConfidence": {
+      "enum": [
+        "PROVIDER_EVIDENCE",
+        "UNCONFIRMED_WEBHOOK",
+        "UNVERIFIED_CLAIM"
+      ],
+      "title": "ObservationConfidence",
+      "type": "string"
+    },
+    "ObservationSource": {
+      "enum": [
+        "PROVIDER_API",
+        "WEBHOOK",
+        "MERCHANT_IMPORT",
+        "SELLER_ENTRY"
+      ],
+      "title": "ObservationSource",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "confidence": {
+      "$ref": "#/$defs/ObservationConfidence"
+    },
+    "observation_id": {
+      "title": "Observation Id",
+      "type": "string"
+    },
+    "payload_sha256": {
+      "title": "Payload Sha256",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/ObservationSource"
+    }
+  },
+  "required": [
+    "observation_id",
+    "source",
+    "confidence",
+    "payload_sha256"
+  ],
+  "title": "ObservationCitation",
+  "type": "object"
+}

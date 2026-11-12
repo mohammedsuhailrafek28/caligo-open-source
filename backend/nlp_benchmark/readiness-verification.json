@@ -1,0 +1,40 @@
+{
+  "baseline": "c6f1ef7ecd985730a1ee4829e593e6de0d5c0bd0",
+  "evaluated_parent": "efbb473b28b6f924d2e6a2d0c120994a25c44738",
+  "default_mode": "deterministic",
+  "s4_default_mode": "RULES_ONLY",
+  "optional_mode": "stanza",
+  "minimum_available_memory_bytes": 1073741824,
+  "focused": {
+    "passed": 85,
+    "skipped": 2
+  },
+  "real_model_offline": {
+    "passed": 2,
+    "network_blocked": true
+  },
+  "offline_regression": {
+    "passed": 1361,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0,
+    "files": 43,
+    "sequential_batches": 8
+  },
+  "core_and_combined_pip_check": "PASS",
+  "tracked_model_weights_or_caches": [],
+  "secret_scan": {
+    "local_trackable_files": "PASS",
+    "gitleaks_staged": "PASS",
+    "gitleaks_history": {
+      "commits": 37,
+      "findings": 6,
+      "review": "Pre-existing synthetic demo authenticator UUIDs, explicit synthetic password, documentation assertion and test idempotency keys. No history suppression or rewrite."
+    }
+  },
+  "startup_probe": "startup-readiness.json",
+  "core_only_probe": "core-only-readiness.json",
+  "dependency_impact": "readiness-dependencies.json",
+  "regression_detail": "readiness-regression.json",
+  "scope_review": "Existing reconciliation, recovery execution, authorization, S4 endpoints and core dependency declarations unchanged from baseline."
+}

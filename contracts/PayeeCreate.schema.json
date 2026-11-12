@@ -1,0 +1,36 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "destination": {
+      "maxLength": 254,
+      "minLength": 3,
+      "title": "Destination",
+      "type": "string"
+    },
+    "label": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Label",
+      "type": "string"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "maxLength": 500,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    }
+  },
+  "required": [
+    "label",
+    "destination"
+  ],
+  "title": "PayeeCreate",
+  "type": "object"
+}

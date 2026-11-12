@@ -1,0 +1,146 @@
+{
+  "$defs": {
+    "BuyerDecision": {
+      "description": "Distinct buyer acts. Acknowledging receipt is not accepting the work, and neither is a payment dispute.",
+      "enum": [
+        "APPROVE_CHANGE",
+        "REJECT_CHANGE",
+        "ACKNOWLEDGE_DELIVERY",
+        "ACCEPT_DELIVERY",
+        "DISPUTE_DELIVERY"
+      ],
+      "title": "BuyerDecision",
+      "type": "string"
+    },
+    "BuyerDecisionView": {
+      "description": "Append-only record of a decision made by the holder of a verified e-mail address (identity beyond that is NOT verified).",
+      "properties": {
+        "artifact_bindings": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Artifact Bindings",
+          "type": "array"
+        },
+        "buyer_email_masked": {
+          "title": "Buyer Email Masked",
+          "type": "string"
+        },
+        "change_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Change Id"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "decision": {
+          "$ref": "#/$defs/BuyerDecision"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/BuyerRequestKind"
+        },
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "request_id": {
+          "title": "Request Id",
+          "type": "string"
+        },
+        "statement": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Statement"
+        },
+        "verification_method": {
+          "const": "EMAIL_OTP",
+          "title": "Verification Method",
+          "type": "string"
+        },
+        "verified_at": {
+          "format": "date-time",
+          "title": "Verified At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "request_id",
+        "project_id",
+        "kind",
+        "decision",
+        "buyer_email_masked",
+        "statement",
+        "verification_method",
+        "change_id",
+        "artifact_bindings",
+        "verified_at",
+        "decided_at"
+      ],
+      "title": "BuyerDecisionView",
+      "type": "object"
+    },
+    "BuyerRequestKind": {
+      "enum": [
+        "SCOPE_CHANGE_APPROVAL",
+        "DELIVERY_REVIEW"
+      ],
+      "title": "BuyerRequestKind",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "decision": {
+      "$ref": "#/$defs/BuyerDecisionView"
+    },
+    "scope_applied": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Scope Applied"
+    },
+    "scope_note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Scope Note"
+    }
+  },
+  "required": [
+    "decision",
+    "scope_applied"
+  ],
+  "title": "BuyerDecisionResponse",
+  "type": "object"
+}

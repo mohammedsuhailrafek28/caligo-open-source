@@ -1,0 +1,41 @@
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource/newsreader/400.css";
+@import "@fontsource/newsreader/500.css";
+@import "@fontsource/newsreader/400-italic.css";
+@import "@fontsource/jetbrains-mono/400.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette: Parchment, Warm paper, Stone, Ink, Terracotta, Sage (+ darker/lighter variants chosen for WCAG AA text contrast). */
+:root {
+  --c-parchment: 255 254 242;
+  --c-paper: 242 239 230;
+  --c-stone: 217 211 198;
+  --c-ink: 51 51 47;
+  --c-ink-soft: 98 96 88;          /* secondary text, 6.1:1 on parchment */
+  --c-terracotta: 164 91 63;       /* actions, fills (white text 4.9:1) */
+  --c-terracotta-deep: 128 66 43;  /* text-size terracotta, 7:1 */
+  --c-terracotta-wash: 244 228 218;
+  --c-sage: 118 131 108;
+  --c-sage-deep: 74 87 64;         /* text-size sage, 6.9:1 */
+  --c-sage-wash: 228 233 220;
+}
+
+@layer base {
+  html { background: rgb(var(--c-parchment)); color: rgb(var(--c-ink)); -webkit-font-smoothing: antialiased; }
+  body { font-family: "Inter Variable", system-ui, sans-serif; font-size: 1rem; line-height: 1.6; font-feature-settings: "cv11", "ss01"; }
+  h1, h2, h3 { font-family: "Newsreader", Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+  ::selection { background: rgb(var(--c-terracotta-wash)); }
+  :focus-visible { outline: 2px solid rgb(var(--c-terracotta-deep)); outline-offset: 2px; }
+  a { text-underline-offset: 3px; }
+}
+
+@layer components {
+  .rule { border-top: 1px solid rgb(var(--c-stone)); }
+  .eyebrow { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgb(var(--c-ink-soft)); font-weight: 500; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.8125rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

@@ -1,0 +1,42 @@
+{
+  "additionalProperties": false,
+  "description": "The payee is the provider's configured merchant, never free text: a client cannot name a different account here.",
+  "properties": {
+    "amount_minor": {
+      "maximum": 2000000000,
+      "minimum": 1,
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "currency": {
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "type": "string"
+    },
+    "merchant_email": {
+      "anyOf": [
+        {
+          "format": "email",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Merchant Email"
+    },
+    "recipient_email": {
+      "format": "email",
+      "title": "Recipient Email",
+      "type": "string"
+    }
+  },
+  "required": [
+    "recipient_email",
+    "currency",
+    "amount_minor"
+  ],
+  "title": "PaymentInstructionCreate",
+  "type": "object"
+}

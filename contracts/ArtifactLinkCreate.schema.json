@@ -1,0 +1,19 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "requirement_keys": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 50,
+      "minItems": 1,
+      "title": "Requirement Keys",
+      "type": "array"
+    }
+  },
+  "required": [
+    "requirement_keys"
+  ],
+  "title": "ArtifactLinkCreate",
+  "type": "object"
+}

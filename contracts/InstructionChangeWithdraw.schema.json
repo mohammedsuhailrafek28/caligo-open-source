@@ -1,0 +1,13 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "note": {
+      "default": "",
+      "maxLength": 500,
+      "title": "Note",
+      "type": "string"
+    }
+  },
+  "title": "InstructionChangeWithdraw",
+  "type": "object"
+}

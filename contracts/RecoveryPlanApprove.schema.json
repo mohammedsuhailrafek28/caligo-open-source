@@ -1,0 +1,22 @@
+{
+  "additionalProperties": false,
+  "description": "Approval binds to exactly one plan version and its evidence fingerprint; it can never authorize a changed plan.",
+  "properties": {
+    "evidence_fingerprint": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Evidence Fingerprint",
+      "type": "string"
+    },
+    "version": {
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "version",
+    "evidence_fingerprint"
+  ],
+  "title": "RecoveryPlanApprove",
+  "type": "object"
+}

@@ -1,0 +1,38 @@
+{
+  "$defs": {
+    "ScopeKind": {
+      "enum": [
+        "ORIGINAL",
+        "CHANGE_REQUEST",
+        "APPROVAL",
+        "DELIVERY_NOTE"
+      ],
+      "title": "ScopeKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "content": {
+      "minLength": 1,
+      "title": "Content",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/ScopeKind"
+    },
+    "source_label": {
+      "maxLength": 255,
+      "minLength": 1,
+      "title": "Source Label",
+      "type": "string"
+    }
+  },
+  "required": [
+    "kind",
+    "source_label",
+    "content"
+  ],
+  "title": "ScopeRecordCreate",
+  "type": "object"
+}

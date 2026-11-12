@@ -1,0 +1,465 @@
+{
+  "$defs": {
+    "Clue": {
+      "additionalProperties": false,
+      "properties": {
+        "log_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Log Id",
+          "type": "string"
+        },
+        "evidence_ref": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Evidence Ref",
+          "type": "string"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "negated": {
+          "title": "Negated",
+          "type": "boolean"
+        },
+        "basis": {
+          "enum": [
+            "surface_rule",
+            "stanza_lemma"
+          ],
+          "title": "Basis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "log_id",
+        "evidence_ref",
+        "category",
+        "start",
+        "end",
+        "negated",
+        "basis"
+      ],
+      "title": "Clue",
+      "type": "object"
+    },
+    "Diagnosis": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "case_id": {
+          "title": "Case Id",
+          "type": "string"
+        },
+        "method": {
+          "enum": [
+            "rules",
+            "llm"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "classification": {
+          "enum": [
+            "duplicate_payment_orders",
+            "capture_order_divergence",
+            "stale_paid_after_refund",
+            "unproven_integration_health",
+            "duplicate_side_effects",
+            "repeated_recovery",
+            "inconclusive"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "suspected_root_cause": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Suspected Root Cause",
+          "type": "string"
+        },
+        "supporting_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Supporting Evidence Ids",
+          "type": "array"
+        },
+        "contradictory_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Contradictory Evidence Ids",
+          "type": "array"
+        },
+        "facts": {
+          "items": {
+            "$ref": "#/$defs/Fact"
+          },
+          "title": "Facts",
+          "type": "array"
+        },
+        "hypotheses": {
+          "items": {
+            "$ref": "#/$defs/Hypothesis"
+          },
+          "title": "Hypotheses",
+          "type": "array"
+        },
+        "confidence_limitations": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Confidence Limitations",
+          "type": "array"
+        },
+        "human_investigation_steps": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Human Investigation Steps",
+          "type": "array"
+        },
+        "human_review_required": {
+          "const": true,
+          "default": true,
+          "title": "Human Review Required",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "case_id",
+        "method",
+        "classification",
+        "suspected_root_cause",
+        "supporting_evidence_ids",
+        "contradictory_evidence_ids",
+        "facts",
+        "hypotheses",
+        "confidence_limitations",
+        "human_investigation_steps"
+      ],
+      "title": "Diagnosis",
+      "type": "object"
+    },
+    "ExactCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "log_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Log Id",
+          "type": "string"
+        },
+        "evidence_ref": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Evidence Ref",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "transaction_id",
+            "order_id",
+            "amount",
+            "currency",
+            "timestamp"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "start": {
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "title": "End",
+          "type": "integer"
+        },
+        "verified": {
+          "const": false,
+          "default": false,
+          "title": "Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "log_id",
+        "evidence_ref",
+        "kind",
+        "value",
+        "start",
+        "end"
+      ],
+      "title": "ExactCandidate",
+      "type": "object"
+    },
+    "Extraction": {
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "payment_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Payment Id",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "deterministic",
+            "stanza"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "clues": {
+          "items": {
+            "$ref": "#/$defs/Clue"
+          },
+          "title": "Clues",
+          "type": "array"
+        },
+        "exact_candidates": {
+          "items": {
+            "$ref": "#/$defs/ExactCandidate"
+          },
+          "title": "Exact Candidates",
+          "type": "array"
+        },
+        "contextual_terms": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Contextual Terms",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "provenance": {
+          "items": {
+            "maxItems": 4,
+            "minItems": 4,
+            "prefixItems": [
+              {
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.:-]+$",
+                "type": "string"
+              },
+              {
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.:-]+$",
+                "type": "string"
+              },
+              {
+                "enum": [
+                  "provider_authenticated",
+                  "merchant",
+                  "simulation",
+                  "operator",
+                  "untrusted_log"
+                ],
+                "type": "string"
+              },
+              {
+                "enum": [
+                  "simulation",
+                  "sandbox"
+                ],
+                "type": "string"
+              }
+            ],
+            "type": "array"
+          },
+          "title": "Provenance",
+          "type": "array"
+        },
+        "advisory_only": {
+          "const": true,
+          "default": true,
+          "title": "Advisory Only",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "project_id",
+        "payment_id",
+        "mode",
+        "clues",
+        "exact_candidates",
+        "contextual_terms",
+        "warnings",
+        "provenance"
+      ],
+      "title": "Extraction",
+      "type": "object"
+    },
+    "Fact": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "field": {
+          "enum": [
+            "source",
+            "kind",
+            "entity_id",
+            "payment_id",
+            "status",
+            "event_id",
+            "effect_key"
+          ],
+          "title": "Field",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "field",
+        "value"
+      ],
+      "title": "Fact",
+      "type": "object"
+    },
+    "Hypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "statement": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 2000,
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "statement",
+        "evidence_ids"
+      ],
+      "title": "Hypothesis",
+      "type": "object"
+    },
+    "LogHypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "classification": {
+          "enum": [
+            "duplicate_payment_orders",
+            "capture_order_divergence",
+            "stale_paid_after_refund",
+            "unproven_integration_health",
+            "duplicate_side_effects",
+            "repeated_recovery",
+            "inconclusive"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.:-]+$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "limitation": {
+          "const": "Untrusted log-language hypothesis; not transaction evidence.",
+          "default": "Untrusted log-language hypothesis; not transaction evidence.",
+          "title": "Limitation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "classification",
+        "evidence_ids"
+      ],
+      "title": "LogHypothesis",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "extraction": {
+      "$ref": "#/$defs/Extraction"
+    },
+    "rules_diagnosis": {
+      "$ref": "#/$defs/Diagnosis"
+    },
+    "log_hypotheses": {
+      "items": {
+        "$ref": "#/$defs/LogHypothesis"
+      },
+      "title": "Log Hypotheses",
+      "type": "array"
+    },
+    "human_review_required": {
+      "const": true,
+      "default": true,
+      "title": "Human Review Required",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "extraction",
+    "rules_diagnosis",
+    "log_hypotheses"
+  ],
+  "title": "Investigation",
+  "type": "object"
+}

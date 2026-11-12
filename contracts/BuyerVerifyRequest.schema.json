@@ -1,0 +1,22 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "pattern": "^[0-9]{6}$",
+      "title": "Code",
+      "type": "string"
+    },
+    "token": {
+      "maxLength": 200,
+      "minLength": 20,
+      "title": "Token",
+      "type": "string"
+    }
+  },
+  "required": [
+    "token",
+    "code"
+  ],
+  "title": "BuyerVerifyRequest",
+  "type": "object"
+}

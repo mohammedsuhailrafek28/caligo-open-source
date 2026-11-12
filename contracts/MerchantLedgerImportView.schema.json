@@ -1,0 +1,54 @@
+{
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "duplicate_count": {
+      "title": "Duplicate Count",
+      "type": "integer"
+    },
+    "file_sha256": {
+      "title": "File Sha256",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "note": {
+      "default": "Every row is an unverified merchant claim. Importing changes no payment status, verifies no payment and releases no payment-instruction hold.",
+      "title": "Note",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "recorded_count": {
+      "title": "Recorded Count",
+      "type": "integer"
+    },
+    "replay": {
+      "default": false,
+      "title": "Replay",
+      "type": "boolean"
+    },
+    "row_count": {
+      "title": "Row Count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "file_sha256",
+    "row_count",
+    "recorded_count",
+    "duplicate_count",
+    "created_at"
+  ],
+  "title": "MerchantLedgerImportView",
+  "type": "object"
+}

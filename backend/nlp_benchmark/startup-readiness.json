@@ -1,0 +1,23 @@
+{
+  "initial_rss_bytes": 22458368,
+  "backend_import_rss_bytes": 88174592,
+  "warm_endpoint_rss_bytes": 107634688,
+  "facade_import_rss_bytes": 107925504,
+  "facade_after_default_request_rss_bytes": 108011520,
+  "facade_import_delta_bytes": 290816,
+  "facade_total_delta_bytes": 376832,
+  "model_import_attempts": [],
+  "stanza_loaded": false,
+  "torch_loaded": false,
+  "endpoint_statuses": {
+    "/health": 200,
+    "/api/v1/capabilities": 200,
+    "/openapi.json": 200,
+    "s4_integration_health": 200,
+    "s4_diagnosis": 200
+  },
+  "s4_mode": "RULES_ONLY",
+  "nlp_default_mode": "deterministic",
+  "unconfigured_stanza_mode": "deterministic",
+  "unconfigured_stanza_reason": "model_not_configured"
+}

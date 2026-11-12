@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "RequirementDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "default": "",
+          "maxLength": 2000,
+          "title": "Description",
+          "type": "string"
+        },
+        "key": {
+          "pattern": "^[A-Z][A-Z0-9_-]{0,23}$",
+          "title": "Key",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "title"
+      ],
+      "title": "RequirementDraft",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Freezes the ORIGINAL agreement. The version, kind and owner are decided by the server.",
+  "properties": {
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/RequirementDraft"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Requirements",
+      "type": "array"
+    },
+    "source_scope_record_id": {
+      "maxLength": 36,
+      "minLength": 1,
+      "title": "Source Scope Record Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_scope_record_id",
+    "requirements"
+  ],
+  "title": "BaselineCreate",
+  "type": "object"
+}

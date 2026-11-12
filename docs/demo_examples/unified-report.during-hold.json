@@ -1,0 +1,613 @@
+{
+  "citation_check": {
+    "all_resolved": true,
+    "coverage": "Checked: observation, gap and event citations against project AND payment; instruction, change and authenticator references on authorization records; references in scope unresolved items, seller claims and AI findings. Instruction versions and changes listed from the project's own rows are existence-only. 'all_resolved' covers only what was checked.",
+    "distinct_checked": 10,
+    "problem_count": 0,
+    "problems": [],
+    "problems_truncated": false,
+    "scope_refs_truncated": false
+  },
+  "evidence_classes": {
+    "AI_INTERPRETATION": "An opinion of an analysis provider: labelled, schema-validated, never a fact, and always needs human review.",
+    "DERIVED_ADVISORY": "Deterministic advice derived from the records above (recovery cases). It recommends human checks and never acts.",
+    "OPERATOR_ESTABLISHED_VERIFICATION": "A check by an authenticator an OPERATOR created on the server host. It shows that whoever held that authenticator answered; it does NOT prove the real-world identity of any buyer and is not independent of the seller if the seller is also the operator.",
+    "PROVIDER_OBSERVATION": "What the payment provider returned to Caligo's last sync, stored immutably. It is not independently audited and is only as complete as the sync.",
+    "SELLER_CLAIM": "Asserted by the seller or in a seller-supplied file. Nothing independent confirms it; it is never proof of a payment or approval.",
+    "SERVER_RECORDED": "A fact Caligo's server recorded itself (a hash, a server time, a hash-chained instruction version, a mailbox-verified buyer action)."
+  },
+  "kind": "UNIFIED_EVIDENCE_REPORT",
+  "limitations": [
+    "This report summarises stored records for a human reviewer. It is not legal advice and it decides no dispute.",
+    "Payment state is decided only by provider reconciliation. This report shows conflicts and gaps beside that state and never resolves them.",
+    "A verification by an operator-established authenticator is not proof of any person's real-world identity.",
+    "Provider observations carry no provider timestamps, a transaction that disappears from a later provider reading is not detected, and there is no webhook ingestion.",
+    "Evidence gaps are permanent: a payment that ever had one stays marked incomplete, and absence of evidence is then never read as absence of payment.",
+    "Scope and delivery sections reuse the Stage 3 evidence report and are bounded only by the limits of that report."
+  ],
+  "payment_instructions": {
+    "authenticators": [
+      {
+        "buyer_email_masked": "d***@example.org",
+        "created_at": "2026-11-10T17:35:15.751153Z",
+        "id": "9030070e-9c2f-4b28-af78-003dcd15ce4a",
+        "note": "Operator-established second channel for a demo; this is not verified real-world identity, and it is not independent of the seller if the seller is also the operator.",
+        "project_id": "783eed50-91a9-462b-9032-1f88f23174d9",
+        "revoked_at": null,
+        "status": "ACTIVE",
+        "trust_basis": "OPERATOR_ESTABLISHED"
+      }
+    ],
+    "authenticators_truncated": false,
+    "authorization_limitation": "A check by an authenticator an OPERATOR created on the server host. It shows that whoever held that authenticator answered; it does NOT prove the real-world identity of any buyer and is not independent of the seller if the seller is also the operator.",
+    "authorization_records_inconsistent": 0,
+    "authorizations": [],
+    "authorizations_truncated": false,
+    "changes": [
+      {
+        "amount_minor": 120000,
+        "created_at": "2026-11-10T17:35:15.770038+00:00",
+        "currency": "USD",
+        "from_fingerprint": "70d0e1780b28990a163610317a2e83cbb5b5eedb59ec29da16ddfa46b3386569",
+        "from_instruction_id": "aa8135c4-7ef3-4c7e-8fad-307f06afbe3c",
+        "id": "0015b111-f5a3-474c-ae98-7a5bf9df4e85",
+        "proposed_fingerprint": "87c6d7bbd38e014f46bf1c2ad4cafcbd71754a8d4f20844bde2d85eefc9f6fbd",
+        "provenance": "SELLER_ENTERED",
+        "reason": "URGENT: our bank details changed, please pay to this new address today.",
+        "reason_evidence_class": "SELLER_CLAIM",
+        "recipient_email": "pay-here-now@example.net",
+        "state": "PENDING_BUYER_SIDE_VERIFICATION"
+      }
+    ],
+    "changes_truncated": false,
+    "hash_chain_intact": true,
+    "hold": {
+      "active": true,
+      "evaluated_with_provider": true,
+      "note": "A hold blocks operations through Caligo only; it never freezes funds held by PayPal. Only buyer-side verification releases it.",
+      "pending_change_ids": [
+        "0015b111-f5a3-474c-ae98-7a5bf9df4e85"
+      ],
+      "reasons": [
+        "UNVERIFIED_INSTRUCTION_CHANGE"
+      ]
+    },
+    "version_count": 1,
+    "versions": [
+      {
+        "amount_minor": 120000,
+        "chain_sha256": "6e91d6ef04b65db84d0fe03cfd6eb3ec6d968f1bf22d1ebac6e6492e2d137e28",
+        "created_at": "2026-11-10T17:35:15.521387+00:00",
+        "currency": "USD",
+        "evidence_class": "SELLER_CLAIM",
+        "fingerprint": "70d0e1780b28990a163610317a2e83cbb5b5eedb59ec29da16ddfa46b3386569",
+        "fingerprint_recomputes": true,
+        "id": "aa8135c4-7ef3-4c7e-8fad-307f06afbe3c",
+        "merchant_email": null,
+        "previous_instruction_id": null,
+        "provenance": "SELLER_ENTERED",
+        "provider": "MOCK_PAYPAL",
+        "recipient_email": "demo-buyer@example.org",
+        "verification_status": "PENDING_VERIFICATION",
+        "version": 1
+      }
+    ],
+    "versions_truncated": false
+  },
+  "payments": {
+    "authority": "Payment status is decided only by provider reconciliation. Merchant-ledger claims are shown beside provider evidence for comparison; they never confirm a payment, change a status or release a hold.",
+    "evidence_gaps": {
+      "items": [],
+      "shown": 0,
+      "total": 0,
+      "truncated": false,
+      "warning": "A gap means part of what the provider reported could not be stored. Absence of evidence is then not absence of payment."
+    },
+    "page": {
+      "limit": 25,
+      "more": false,
+      "offset": 0,
+      "returned": 1,
+      "total_payments": 1
+    },
+    "payments": [
+      {
+        "authoritative_status": "PAID",
+        "authoritative_status_source": "PROVIDER_RECONCILIATION",
+        "claim_vs_provider": "CLAIMED_TOTAL_DIFFERS_FROM_PROVIDER",
+        "currency": "USD",
+        "findings": [
+          {
+            "citations": [
+              {
+                "confidence": "PROVIDER_EVIDENCE",
+                "observation_id": "69fe2706-1033-45df-acd3-a6fce745b2d7",
+                "payload_sha256": "b4aa49e518d373fef3b96a95613e59c4c67e45e72170844fe1c1f6d8a994a741",
+                "source": "PROVIDER_API"
+              },
+              {
+                "confidence": "UNVERIFIED_CLAIM",
+                "observation_id": "35777fd1-cf89-4ae4-be4a-696fdfa66f13",
+                "payload_sha256": "389eaf0e69f779620005ee7ef514155c60e4ee1e64def6f5f5e92400d0fafde5",
+                "source": "MERCHANT_IMPORT"
+              }
+            ],
+            "citations_total": 2,
+            "code": "CLAIM_AMOUNT_MISMATCH",
+            "gap_ids": [],
+            "payment_id": "f9637ef1-0163-4471-b4f3-c3750436911d",
+            "severity": "CONFLICT",
+            "summary": "The claim says 100000 minor units; the provider reported 120000 for the same transaction."
+          },
+          {
+            "citations": [
+              {
+                "confidence": "PROVIDER_EVIDENCE",
+                "observation_id": "69fe2706-1033-45df-acd3-a6fce745b2d7",
+                "payload_sha256": "b4aa49e518d373fef3b96a95613e59c4c67e45e72170844fe1c1f6d8a994a741",
+                "source": "PROVIDER_API"
+              },
+              {
+                "confidence": "UNVERIFIED_CLAIM",
+                "observation_id": "35777fd1-cf89-4ae4-be4a-696fdfa66f13",
+                "payload_sha256": "389eaf0e69f779620005ee7ef514155c60e4ee1e64def6f5f5e92400d0fafde5",
+                "source": "MERCHANT_IMPORT"
+              },
+              {
+                "confidence": "UNVERIFIED_CLAIM",
+                "observation_id": "d0db3ecc-1500-4729-8dd5-ab4df49de914",
+                "payload_sha256": "170506af61206a4bfc5acdc3a29c2f6d48fe62fce9b9782ebb1022f6c21fbc2c",
+                "source": "MERCHANT_IMPORT"
+              }
+            ],
+            "citations_total": 3,
+            "code": "CLAIMED_TOTAL_DIFFERS_FROM_PROVIDER",
+            "gap_ids": [],
+            "payment_id": "f9637ef1-0163-4471-b4f3-c3750436911d",
+            "severity": "WARNING",
+            "summary": "Claimed payments total 105000; PayPal payments the provider reported total 120000."
+          },
+          {
+            "citations": [
+              {
+                "confidence": "PROVIDER_EVIDENCE",
+                "observation_id": "1a37fb89-3f9c-447d-8c90-63d9fa83bb33",
+                "payload_sha256": "97f92b7ce9a850a8c667457e2f193b875e989dfb5e7d6747386b08b673f8f0ef",
+                "source": "PROVIDER_API"
+              },
+              {
+                "confidence": "UNVERIFIED_CLAIM",
+                "observation_id": "d0db3ecc-1500-4729-8dd5-ab4df49de914",
+                "payload_sha256": "170506af61206a4bfc5acdc3a29c2f6d48fe62fce9b9782ebb1022f6c21fbc2c",
+                "source": "MERCHANT_IMPORT"
+              }
+            ],
+            "citations_total": 2,
+            "code": "CLAIM_NOT_IN_PROVIDER_EVIDENCE",
+            "gap_ids": [],
+            "payment_id": "f9637ef1-0163-4471-b4f3-c3750436911d",
+            "severity": "WARNING",
+            "summary": "The provider's evidence for this invoice does not contain this transaction."
+          }
+        ],
+        "invoice_amount_minor": 120000,
+        "invoice_number": "PEM-B76ECFABAF1A332008D9",
+        "is_simulated": true,
+        "observation_counts_by_source": {
+          "MERCHANT_IMPORT": 2,
+          "PROVIDER_API": 3
+        },
+        "payment_id": "f9637ef1-0163-4471-b4f3-c3750436911d",
+        "provider": "MOCK_PAYPAL",
+        "provider_observations": {
+          "evidence_class": "PROVIDER_OBSERVATION",
+          "evidence_complete": true,
+          "evidence_gap_count": 0,
+          "paid_minor": 120000
+        },
+        "seller_claims": {
+          "claimed_paid_minor": 105000,
+          "claims_truncated": false,
+          "evidence_class": "SELLER_CLAIM"
+        }
+      }
+    ],
+    "recovery_cases": {
+      "advisory_only": true,
+      "cases_sha256": "79c67f3461878ace720ea206870788247d83d60fe35e4e3021840c57536a25d2",
+      "evidence_class": "DERIVED_ADVISORY",
+      "items": [
+        {
+          "advisory_only": true,
+          "basis_sha256": "8f8a764bb8f50fbe857dbeec13ef4d585c82df58ffb6723824a4e77bc52ee930",
+          "case_id": "rc_f8bd3b5625f3a4c74db7aa7d",
+          "category": "AMOUNT_OR_CURRENCY_MISMATCH",
+          "citations": [
+            {
+              "confidence": "UNVERIFIED_CLAIM",
+              "id": "35777fd1-cf89-4ae4-be4a-696fdfa66f13",
+              "kind": "OBSERVATION",
+              "payload_sha256": "389eaf0e69f779620005ee7ef514155c60e4ee1e64def6f5f5e92400d0fafde5",
+              "source": "MERCHANT_IMPORT"
+            },
+            {
+              "confidence": "PROVIDER_EVIDENCE",
+              "id": "69fe2706-1033-45df-acd3-a6fce745b2d7",
+              "kind": "OBSERVATION",
+              "payload_sha256": "b4aa49e518d373fef3b96a95613e59c4c67e45e72170844fe1c1f6d8a994a741",
+              "source": "PROVIDER_API"
+            },
+            {
+              "confidence": "UNVERIFIED_CLAIM",
+              "id": "d0db3ecc-1500-4729-8dd5-ab4df49de914",
+              "kind": "OBSERVATION",
+              "payload_sha256": "170506af61206a4bfc5acdc3a29c2f6d48fe62fce9b9782ebb1022f6c21fbc2c",
+              "source": "MERCHANT_IMPORT"
+            }
+          ],
+          "citations_total": 3,
+          "citations_verified": true,
+          "confidence": "CLAIM_VS_PROVIDER",
+          "confidence_limits": [
+            "Claims are unverified; the provider's record is what reconciliation judges."
+          ],
+          "current_state": {
+            "authoritative_status": "PAID",
+            "claimed_paid_minor": 105000,
+            "claims_truncated": false,
+            "currency": "USD",
+            "evidence_complete": true,
+            "evidence_gap_count": 0,
+            "hold_active": true,
+            "invoice_amount_minor": 120000,
+            "invoice_number": "PEM-B76ECFABAF1A332008D9",
+            "provider_paid_minor": 120000
+          },
+          "derived_from": [
+            "CLAIMED_TOTAL_DIFFERS_FROM_PROVIDER",
+            "CLAIM_AMOUNT_MISMATCH"
+          ],
+          "evidence_class": "DERIVED_ADVISORY",
+          "evidence_complete": true,
+          "explanation": "A record disagrees with another on amount or currency (a claim against the provider's record or the invoice, or the provider's own totals). Details: The claim says 100000 minor units; the provider reported 120000 for the same transaction.; Claimed payments total 105000; PayPal payments the provider reported total 120000.",
+          "payment_id": "f9637ef1-0163-4471-b4f3-c3750436911d",
+          "prohibited_automated_actions": [
+            "Issue, approve or request a refund",
+            "Capture, transfer or move funds",
+            "Cancel, void, send or modify a PayPal invoice",
+            "Mark a payment as paid or verified because of a merchant or seller claim",
+            "Release, override or bypass a payment-instruction hold",
+            "Edit or delete stored observations, gaps or history"
+          ],
+          "project_id": "783eed50-91a9-462b-9032-1f88f23174d9",
+          "recommended_next_action": "Compare the records with the transaction in your PayPal dashboard and correct whichever is wrong. Contact the buyer only through a channel you already trust.",
+          "severity": "CONFLICT"
+        },
+        {
+          "advisory_only": true,
+          "basis_sha256": "aed5a0f9cf472c481bd0828841962fd265b3bdf2a28b106e419abcd70e13dd4b",
+          "case_id": "rc_ee1fb28ae6d4bb175dbf1cbe",
+          "category": "CLAIM_NOT_CORROBORATED",
+          "citations": [
+            {
+              "confidence": "PROVIDER_EVIDENCE",
+              "id": "1a37fb89-3f9c-447d-8c90-63d9fa83bb33",
+              "kind": "OBSERVATION",
+              "payload_sha256": "97f92b7ce9a850a8c667457e2f193b875e989dfb5e7d6747386b08b673f8f0ef",
+              "source": "PROVIDER_API"
+            },
+            {
+              "confidence": "UNVERIFIED_CLAIM",
+              "id": "d0db3ecc-1500-4729-8dd5-ab4df49de914",
+              "kind": "OBSERVATION",
+              "payload_sha256": "170506af61206a4bfc5acdc3a29c2f6d48fe62fce9b9782ebb1022f6c21fbc2c",
+              "source": "MERCHANT_IMPORT"
+            }
+          ],
+          "citations_total": 2,
+          "citations_verified": true,
+          "confidence": "CLAIM_VS_PROVIDER",
+          "confidence_limits": [
+            "The claim is unverified.",
+            "Provider evidence is a snapshot of what Caligo's last sync saw."
+          ],
+          "current_state": {
+            "authoritative_status": "PAID",
+            "claimed_paid_minor": 105000,
+            "claims_truncated": false,
+            "currency": "USD",
+            "evidence_complete": true,
+            "evidence_gap_count": 0,
+            "hold_active": true,
+            "invoice_amount_minor": 120000,
+            "invoice_number": "PEM-B76ECFABAF1A332008D9",
+            "provider_paid_minor": 120000
+          },
+          "derived_from": [
+            "CLAIM_NOT_IN_PROVIDER_EVIDENCE"
+          ],
+          "evidence_class": "DERIVED_ADVISORY",
+          "evidence_complete": true,
+          "explanation": "A merchant or seller claim cannot be matched to the provider's stored evidence for this payment (the transaction is not in it, or the claim carries no transaction reference). Details: The provider's evidence for this invoice does not contain this transaction.",
+          "payment_id": "f9637ef1-0163-4471-b4f3-c3750436911d",
+          "prohibited_automated_actions": [
+            "Issue, approve or request a refund",
+            "Capture, transfer or move funds",
+            "Cancel, void, send or modify a PayPal invoice",
+            "Mark a payment as paid or verified because of a merchant or seller claim",
+            "Release, override or bypass a payment-instruction hold",
+            "Edit or delete stored observations, gaps or history"
+          ],
+          "project_id": "783eed50-91a9-462b-9032-1f88f23174d9",
+          "recommended_next_action": "Check the transaction reference against your PayPal dashboard, then correct the claim or sync again later. Do not treat the claim as a received payment.",
+          "severity": "WARNING"
+        },
+        {
+          "advisory_only": true,
+          "basis_sha256": "1d56398fc6ec6c765143dc2df085282fa8084cdcd5d5d4dc0d775975a4c24c9d",
+          "case_id": "rc_dfed6d31c3ed40e3719b89a5",
+          "category": "PENDING_BUYER_AUTHORIZATION",
+          "citations": [
+            {
+              "confidence": null,
+              "id": "0015b111-f5a3-474c-ae98-7a5bf9df4e85",
+              "kind": "INSTRUCTION_CHANGE",
+              "payload_sha256": null,
+              "source": null
+            },
+            {
+              "confidence": null,
+              "id": "aa8135c4-7ef3-4c7e-8fad-307f06afbe3c",
+              "kind": "INSTRUCTION_VERSION",
+              "payload_sha256": null,
+              "source": null
+            }
+          ],
+          "citations_total": 2,
+          "citations_verified": true,
+          "confidence": "INSTRUCTION_RECORD",
+          "confidence_limits": [
+            "A buyer decision is evidence that whoever controlled the verified channel made it, not legal identity."
+          ],
+          "current_state": {
+            "current_instruction_version": 1,
+            "hold_active": true,
+            "hold_reasons": "UNVERIFIED_INSTRUCTION_CHANGE",
+            "hold_scope": "CALIGO_OPERATIONS_ONLY",
+            "pending_changes": 1,
+            "release_requires": "BUYER_SIDE_VERIFICATION"
+          },
+          "derived_from": [
+            "UNVERIFIED_INSTRUCTION_CHANGE"
+          ],
+          "evidence_class": "DERIVED_ADVISORY",
+          "evidence_complete": true,
+          "explanation": "A change is waiting for buyer-side verification. Details: A change to the payment instruction is waiting for buyer-side verification. Payment operations through Caligo are on hold; funds at PayPal are not frozen.",
+          "payment_id": null,
+          "prohibited_automated_actions": [
+            "Issue, approve or request a refund",
+            "Capture, transfer or move funds",
+            "Cancel, void, send or modify a PayPal invoice",
+            "Mark a payment as paid or verified because of a merchant or seller claim",
+            "Release, override or bypass a payment-instruction hold",
+            "Edit or delete stored observations, gaps or history"
+          ],
+          "project_id": "783eed50-91a9-462b-9032-1f88f23174d9",
+          "recommended_next_action": "Ask the buyer to approve it through their enrolled authenticator. Ask the buyer to approve the change through their enrolled authenticator. The seller cannot approve it, and Caligo never releases the hold automatically.",
+          "severity": "WARNING"
+        }
+      ]
+    }
+  },
+  "project": {
+    "id": "783eed50-91a9-462b-9032-1f88f23174d9",
+    "title": "SYNTHETIC DEMO: Acme website build"
+  },
+  "report_sha256": "bb9dcc2e27ab936e15703fa48ffb253727fd7afd5932973d6055c1ae12f9aaaa",
+  "report_version": "R5.1",
+  "scope_and_delivery": {
+    "agreement": {
+      "baselines": [
+        {
+          "change_id": null,
+          "content_sha256": "c6d1749cf2e888e78cd51042c05a64e6dc38bccbab79955696ff1d5703843169",
+          "created_at": "2026-11-10T17:35:15.285185+00:00",
+          "id": "65cfa7d5-6312-4d43-a53b-5a881d0de5ef",
+          "kind": "ORIGINAL",
+          "requirements": [
+            {
+              "description": "Responsive home page with hero section and navigation menu.",
+              "id": "7a587607-52fe-4868-b887-68d714556601",
+              "key": "R1",
+              "origin": "ORIGINAL",
+              "title": "Home page"
+            },
+            {
+              "description": "Contact form that sends email to the site owner.",
+              "id": "307f9a2f-cd91-411d-a5f5-29dab90ea9a1",
+              "key": "R2",
+              "origin": "ORIGINAL",
+              "title": "Contact form"
+            },
+            {
+              "description": "Pricing page listing three subscription plans.",
+              "id": "51ce07de-4e44-4db8-8241-9ff6150bbab3",
+              "key": "R3",
+              "origin": "ORIGINAL",
+              "title": "Pricing page"
+            }
+          ],
+          "version": 1
+        }
+      ]
+    },
+    "ai_judgments": null,
+    "available": true,
+    "buyer_evidence": {
+      "caveat": "A buyer decision shows that whoever controlled the verified mailbox made it at that time. It is not legal identity verification, and anyone who controls that mailbox could have made it.",
+      "decisions": [
+        {
+          "artifact_bindings": [
+            {
+              "artifact_id": "100a412e-95cc-4218-836c-cb4d53755269",
+              "sha256": "d2b49c4f6bd37a555dd257a7a8d96709e3771b6d90aa0e0c7a0a949f372ab5c9",
+              "version": 1
+            },
+            {
+              "artifact_id": "c951b1c3-309f-4ec3-aff3-b3c169c18818",
+              "sha256": "dacc1ad10273d0646f0530753ef2b14b85c002d3b6a5750132f927cecddc892f",
+              "version": 1
+            },
+            {
+              "artifact_id": "0c0b0216-f1b9-4634-adb9-03781358b3fe",
+              "sha256": "2568481f3650ac49041a5e8a617fd24c87266c0686af94b508ca910bc95ac187",
+              "version": 1
+            }
+          ],
+          "buyer_email_masked": "d***@example.org",
+          "change_id": null,
+          "change_sha256": null,
+          "decided_at": "2026-11-10T17:35:15.481173+00:00",
+          "decision": "ACKNOWLEDGE_DELIVERY",
+          "id": "3f08f4b5-6629-4348-8010-a0919614db6d",
+          "kind": "DELIVERY_REVIEW",
+          "shares_seller_email_domain": false,
+          "statement": "Received the three files. Not yet reviewed in depth.",
+          "verification_method": "EMAIL_OTP",
+          "verified_at": "2026-11-10T17:35:15.449008+00:00"
+        }
+      ],
+      "delivery_status": "ACKNOWLEDGED_ONLY"
+    },
+    "changes": [],
+    "evidence_classes_used": {
+      "agreement_and_changes": "SERVER_RECORDED",
+      "ai_judgments": "AI_INTERPRETATION",
+      "buyer_evidence": "SERVER_RECORDED (mailbox-verified; not legal identity)",
+      "seller_claims": "SELLER_CLAIM"
+    },
+    "evidence_report_sha256": "0abc6bf356d5a2eebedfa759fbb55c1450f74ad0569ecc0fba9425ec27b647d3",
+    "refs_truncated": false,
+    "requirement_mapping": [
+      {
+        "artifacts": [
+          {
+            "artifact_id": "c951b1c3-309f-4ec3-aff3-b3c169c18818",
+            "content_verification": "VERIFIED_SERVER_HASH",
+            "link_basis": "SELLER_ASSERTED",
+            "name": "home.html",
+            "sha256": "dacc1ad10273d0646f0530753ef2b14b85c002d3b6a5750132f927cecddc892f",
+            "version": 1
+          }
+        ],
+        "key": "R1",
+        "requirement_id": "7a587607-52fe-4868-b887-68d714556601",
+        "title": "Home page"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_id": "100a412e-95cc-4218-836c-cb4d53755269",
+            "content_verification": "VERIFIED_SERVER_HASH",
+            "link_basis": "SELLER_ASSERTED",
+            "name": "contact.php",
+            "sha256": "d2b49c4f6bd37a555dd257a7a8d96709e3771b6d90aa0e0c7a0a949f372ab5c9",
+            "version": 1
+          }
+        ],
+        "key": "R2",
+        "requirement_id": "307f9a2f-cd91-411d-a5f5-29dab90ea9a1",
+        "title": "Contact form"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_id": "0c0b0216-f1b9-4634-adb9-03781358b3fe",
+            "content_verification": "VERIFIED_SERVER_HASH",
+            "link_basis": "SELLER_ASSERTED",
+            "name": "pricing.html",
+            "sha256": "2568481f3650ac49041a5e8a617fd24c87266c0686af94b508ca910bc95ac187",
+            "version": 1
+          }
+        ],
+        "key": "R3",
+        "requirement_id": "51ce07de-4e44-4db8-8241-9ff6150bbab3",
+        "title": "Pricing page"
+      }
+    ],
+    "seller_claims": [
+      {
+        "basis": "SELLER_ASSERTED",
+        "refs": [
+          "artifact:c951b1c3-309f-4ec3-aff3-b3c169c18818"
+        ],
+        "text": "The seller states that 'home.html' v1 relates to requirement R1.",
+        "type": "ARTIFACT_REQUIREMENT_LINK",
+        "verified": false
+      },
+      {
+        "basis": "SELLER_ASSERTED",
+        "refs": [
+          "artifact:100a412e-95cc-4218-836c-cb4d53755269"
+        ],
+        "text": "The seller states that 'contact.php' v1 relates to requirement R2.",
+        "type": "ARTIFACT_REQUIREMENT_LINK",
+        "verified": false
+      },
+      {
+        "basis": "SELLER_ASSERTED",
+        "refs": [
+          "artifact:0c0b0216-f1b9-4634-adb9-03781358b3fe"
+        ],
+        "text": "The seller states that 'pricing.html' v1 relates to requirement R3.",
+        "type": "ARTIFACT_REQUIREMENT_LINK",
+        "verified": false
+      }
+    ],
+    "unresolved": [
+      {
+        "refs": [
+          "buyer_decision:3f08f4b5-6629-4348-8010-a0919614db6d"
+        ],
+        "text": "The buyer acknowledged receipt only; acceptance was not recorded.",
+        "type": "DELIVERY_NOT_ACCEPTED"
+      }
+    ]
+  },
+  "summary": {
+    "authorization_records": 0,
+    "authorization_records_inconsistent": 0,
+    "citations_all_resolved": true,
+    "delivery_status": "ACKNOWLEDGED_ONLY",
+    "instruction_hash_chain_intact": true,
+    "instruction_versions": 1,
+    "no_conclusion_is_drawn": "Where evidence is incomplete, conflicting or unverified the report says so and does not resolve it.",
+    "payment_hold_active": true,
+    "payments_on_page": 1,
+    "payments_with_incomplete_provider_evidence": [],
+    "pending_instruction_changes": 1,
+    "recovery_cases_by_severity": {
+      "CONFLICT": 1,
+      "INFO": 0,
+      "WARNING": 2
+    },
+    "recovery_cases_on_page": 3,
+    "scope_delivery_available": true,
+    "scope_unresolved_items": 1,
+    "total_payments": 1
+  },
+  "truncation": {
+    "authenticators_truncated": false,
+    "authorizations_truncated": false,
+    "evidence_gaps_truncated": false,
+    "instruction_changes_truncated": false,
+    "instruction_versions_truncated": false,
+    "payments_page": {
+      "limit": 25,
+      "more": false,
+      "offset": 0,
+      "returned": 1,
+      "total_payments": 1
+    }
+  }
+}

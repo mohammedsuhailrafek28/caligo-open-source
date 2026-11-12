@@ -1,0 +1,45 @@
+{
+  "stanza_version": "1.15.0",
+  "resources_version": "1.15.0",
+  "processors": {
+    "tokenize": "ewt_nocharlm",
+    "mwt": "ewt",
+    "pos": "ewt_nocharlm",
+    "lemma": "ewt_nocharlm"
+  },
+  "device": "cpu",
+  "files": {
+    "resources.json": {
+      "sha256": "fc9c2067f7a9271cd5372b95143744089ae5035003efcf0892945904cfe7b0c3",
+      "bytes": 535477,
+      "source": "https://raw.githubusercontent.com/stanfordnlp/stanza-resources/3a0205f44b0213ddfb2fb2928663a32da9596b28/resources_1.15.0.json"
+    },
+    "en/tokenize/ewt_nocharlm.pt": {
+      "sha256": "6ae118af27faac116dcd351b79b2a106d5ccfb56b59c835346347a328192981c",
+      "bytes": 644162,
+      "source": "https://huggingface.co/stanfordnlp/stanza-en/raw/v1.15.0/models/tokenize/ewt_nocharlm.pt"
+    },
+    "en/mwt/ewt.pt": {
+      "sha256": "731c21049ba6e5a1a4c3788ad029001c2a1dfa871dad61b7b3698a3b06a3d376",
+      "bytes": 487533,
+      "source": "https://huggingface.co/stanfordnlp/stanza-en/raw/v1.15.0/models/mwt/ewt.pt"
+    },
+    "en/pos/ewt_nocharlm.pt": {
+      "sha256": "2637eaac91a5b0814717f8ebe9b0f70d16349e637299623945ed21ddd77b02a2",
+      "bytes": 22906290,
+      "source": "https://huggingface.co/stanfordnlp/stanza-en/raw/v1.15.0/models/pos/ewt_nocharlm.pt"
+    },
+    "en/lemma/ewt_nocharlm.pt": {
+      "sha256": "883ae9d88d190fd24ee3dc7e8c0b69e34dace68915cba95b8b1e0b252b45e3bc",
+      "bytes": 2217356,
+      "source": "https://huggingface.co/stanfordnlp/stanza-en/raw/v1.15.0/models/lemma/ewt_nocharlm.pt"
+    },
+    "en/pretrain/conll17.pt": {
+      "sha256": "edde4c195f91ba45aab3f3a6254202011f284559da8a5ead5e62ce522f819c5e",
+      "bytes": 106701210,
+      "source": "https://huggingface.co/stanfordnlp/stanza-en/raw/v1.15.0/models/pretrain/conll17.pt"
+    }
+  },
+  "provenance": "Official versioned resource metadata and Git LFS pointers; downloaded weights verified against these hashes",
+  "verification": "All downloaded files matched pinned official hashes"
+}

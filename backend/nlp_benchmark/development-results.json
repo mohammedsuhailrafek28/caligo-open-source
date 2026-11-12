@@ -1,0 +1,137 @@
+{
+  "status": "RUN",
+  "mode": "deterministic",
+  "split": "development",
+  "python": "3.12.10",
+  "model_load_ms": 0.000700005330145359,
+  "baseline_rss_bytes": 33497088,
+  "loaded_rss_bytes": 33497088,
+  "peak_sampled_rss_bytes": 33492992,
+  "min_available_memory_bytes": 2426052608,
+  "metrics": {
+    "cases": [
+      {
+        "id": "captured-write-failed",
+        "expected": "capture_order_divergence",
+        "predicted": "capture_order_divergence",
+        "clues": [
+          "failure"
+        ],
+        "gold_clues": [
+          "failure"
+        ],
+        "citation_valid": true,
+        "latency_ms": 1.36160000693053,
+        "cpu_ms": 0.0,
+        "s3_classification": "inconclusive"
+      },
+      {
+        "id": "duplicate-webhook",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "clues": [
+          "duplicate"
+        ],
+        "gold_clues": [
+          "duplicate"
+        ],
+        "citation_valid": true,
+        "latency_ms": 0.17590000061318278,
+        "cpu_ms": 0.0,
+        "s3_classification": "inconclusive"
+      },
+      {
+        "id": "inventory-twice",
+        "expected": "duplicate_side_effects",
+        "predicted": "duplicate_side_effects",
+        "clues": [
+          "duplicate"
+        ],
+        "gold_clues": [
+          "duplicate"
+        ],
+        "citation_valid": true,
+        "latency_ms": 0.15189999248832464,
+        "cpu_ms": 0.0,
+        "s3_classification": "inconclusive"
+      },
+      {
+        "id": "refund-late-paid",
+        "expected": "stale_paid_after_refund",
+        "predicted": "stale_paid_after_refund",
+        "clues": [
+          "stale"
+        ],
+        "gold_clues": [
+          "stale"
+        ],
+        "citation_valid": true,
+        "latency_ms": 0.18929998623207211,
+        "cpu_ms": 0.0,
+        "s3_classification": "inconclusive"
+      },
+      {
+        "id": "health-no-e2e",
+        "expected": "unproven_integration_health",
+        "predicted": "unproven_integration_health",
+        "clues": [],
+        "gold_clues": [],
+        "citation_valid": true,
+        "latency_ms": 0.1933000166900456,
+        "cpu_ms": 0.0,
+        "s3_classification": "inconclusive"
+      },
+      {
+        "id": "timeout-retry",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "clues": [
+          "retry",
+          "timeout"
+        ],
+        "gold_clues": [
+          "retry",
+          "timeout"
+        ],
+        "citation_valid": true,
+        "latency_ms": 0.23509998572990298,
+        "cpu_ms": 0.0,
+        "s3_classification": "inconclusive"
+      },
+      {
+        "id": "negative",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "clues": [],
+        "gold_clues": [],
+        "citation_valid": true,
+        "latency_ms": 0.17389998538419604,
+        "cpu_ms": 0.0,
+        "s3_classification": "inconclusive"
+      },
+      {
+        "id": "empty",
+        "expected": "inconclusive",
+        "predicted": "inconclusive",
+        "clues": [],
+        "gold_clues": [],
+        "citation_valid": true,
+        "latency_ms": 0.09370001498609781,
+        "cpu_ms": 0.0,
+        "s3_classification": "inconclusive"
+      }
+    ],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "root_cause_accuracy": 1.0,
+    "s3_structured_only_accuracy": 0.5,
+    "citation_validity": 1.0,
+    "unsupported_clue_count": 0,
+    "unsupported_hypothesis_count": 0,
+    "abstention_rate": 0.5,
+    "mean_latency_ms": 0.321837498631794,
+    "mean_cpu_ms": 0.0
+  },
+  "canonical_cases_sha256": "1d0cc5aab27d9bba12dd2ee554ab5e61ee0cf632ecb9d241d49ccadfd4d31ddb"
+}

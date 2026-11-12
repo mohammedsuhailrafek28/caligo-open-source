@@ -1,0 +1,873 @@
+{
+  "configuration_only": {
+    "input": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "max_age_seconds": 86400,
+      "webhook_required": true,
+      "incomplete_evidence_warnings": [],
+      "evidence": [
+        {
+          "evidence_id": "config",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-config",
+          "check": "configuration",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        }
+      ]
+    },
+    "output": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "status": "UNVERIFIED",
+      "supported_capabilities": [
+        {
+          "name": "configuration_observed",
+          "evidence_ids": [
+            "config"
+          ]
+        }
+      ],
+      "missing_checks": [
+        "connectivity",
+        "transaction",
+        "webhook"
+      ],
+      "stale_evidence_warnings": [],
+      "incomplete_evidence_warnings": [],
+      "supporting_evidence_ids": [
+        "config"
+      ],
+      "contradictory_evidence_ids": [],
+      "last_successful_checks": {
+        "configuration": "2026-11-11T11:00:00Z"
+      },
+      "facts": [
+        {
+          "evidence_id": "config",
+          "field": "status",
+          "value": "success"
+        }
+      ],
+      "assumptions": [
+        "Source provenance and project access are authenticated by the exporting caller.",
+        "Supplied clock times and the configured freshness window are appropriate for this integration.",
+        "Observed success is limited to the named environment and supplied checks; it is not production certification."
+      ],
+      "suggested_next_diagnostic_action": "Inspect or obtain authorized evidence for: connectivity, transaction, webhook. No check is executed by this module.",
+      "human_review_required": true,
+      "production_certification": false
+    }
+  },
+  "connectivity_failed_transaction": {
+    "input": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "max_age_seconds": 86400,
+      "webhook_required": true,
+      "incomplete_evidence_warnings": [],
+      "evidence": [
+        {
+          "evidence_id": "config",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-config",
+          "check": "configuration",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "connect",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-connect",
+          "check": "connectivity",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "failed",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-failed",
+          "check": "transaction",
+          "outcome": "failure",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        }
+      ]
+    },
+    "output": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "status": "DEGRADED",
+      "supported_capabilities": [
+        {
+          "name": "configuration_observed",
+          "evidence_ids": [
+            "config"
+          ]
+        },
+        {
+          "name": "provider_connectivity_observed",
+          "evidence_ids": [
+            "connect"
+          ]
+        }
+      ],
+      "missing_checks": [
+        "transaction",
+        "webhook"
+      ],
+      "stale_evidence_warnings": [],
+      "incomplete_evidence_warnings": [],
+      "supporting_evidence_ids": [
+        "config",
+        "connect"
+      ],
+      "contradictory_evidence_ids": [
+        "failed"
+      ],
+      "last_successful_checks": {
+        "configuration": "2026-11-11T11:00:00Z",
+        "connectivity": "2026-11-11T11:00:00Z"
+      },
+      "facts": [
+        {
+          "evidence_id": "config",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "connect",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "failed",
+          "field": "status",
+          "value": "failure"
+        }
+      ],
+      "assumptions": [
+        "Source provenance and project access are authenticated by the exporting caller.",
+        "Supplied clock times and the configured freshness window are appropriate for this integration.",
+        "Observed success is limited to the named environment and supplied checks; it is not production certification."
+      ],
+      "suggested_next_diagnostic_action": "Inspect or obtain authorized evidence for: transaction, webhook. No check is executed by this module.",
+      "human_review_required": true,
+      "production_certification": false
+    }
+  },
+  "fresh_transaction": {
+    "input": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "max_age_seconds": 86400,
+      "webhook_required": true,
+      "incomplete_evidence_warnings": [],
+      "evidence": [
+        {
+          "evidence_id": "config",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-config",
+          "check": "configuration",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "connect",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-connect",
+          "check": "connectivity",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "capture",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-capture",
+          "check": "provider_capture",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": "tx1",
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "order",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-order",
+          "check": "order_completion",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": "tx1",
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "transaction",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-transaction",
+          "check": "transaction",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": "tx1",
+          "evidence_refs": [
+            "capture",
+            "order"
+          ]
+        },
+        {
+          "evidence_id": "webhook",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-webhook",
+          "check": "webhook",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        }
+      ]
+    },
+    "output": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "status": "TRANSACTION_VERIFIED",
+      "supported_capabilities": [
+        {
+          "name": "configuration_observed",
+          "evidence_ids": [
+            "config"
+          ]
+        },
+        {
+          "name": "provider_connectivity_observed",
+          "evidence_ids": [
+            "connect"
+          ]
+        },
+        {
+          "name": "end_to_end_transaction_observed",
+          "evidence_ids": [
+            "capture",
+            "order",
+            "transaction"
+          ]
+        },
+        {
+          "name": "webhook_processing_observed",
+          "evidence_ids": [
+            "webhook"
+          ]
+        }
+      ],
+      "missing_checks": [],
+      "stale_evidence_warnings": [],
+      "incomplete_evidence_warnings": [],
+      "supporting_evidence_ids": [
+        "capture",
+        "config",
+        "connect",
+        "order",
+        "transaction",
+        "webhook"
+      ],
+      "contradictory_evidence_ids": [],
+      "last_successful_checks": {
+        "configuration": "2026-11-11T11:00:00Z",
+        "connectivity": "2026-11-11T11:00:00Z",
+        "transaction": "2026-11-11T11:00:00Z",
+        "webhook": "2026-11-11T11:00:00Z"
+      },
+      "facts": [
+        {
+          "evidence_id": "capture",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "config",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "connect",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "order",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "transaction",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "webhook",
+          "field": "status",
+          "value": "success"
+        }
+      ],
+      "assumptions": [
+        "Source provenance and project access are authenticated by the exporting caller.",
+        "Supplied clock times and the configured freshness window are appropriate for this integration.",
+        "Observed success is limited to the named environment and supplied checks; it is not production certification."
+      ],
+      "suggested_next_diagnostic_action": "Review the cited check records and schedule the next offline evidence assessment before expiry.",
+      "human_review_required": true,
+      "production_certification": false
+    }
+  },
+  "stale_transaction": {
+    "input": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "max_age_seconds": 86400,
+      "webhook_required": true,
+      "incomplete_evidence_warnings": [],
+      "evidence": [
+        {
+          "evidence_id": "config",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-config",
+          "check": "configuration",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-09T11:00:00Z",
+          "received_at": "2026-11-09T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "connect",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-connect",
+          "check": "connectivity",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-09T11:00:00Z",
+          "received_at": "2026-11-09T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "capture",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-capture",
+          "check": "provider_capture",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-09T11:00:00Z",
+          "received_at": "2026-11-09T11:01:00Z",
+          "transaction_id": "tx1",
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "order",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-order",
+          "check": "order_completion",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-09T11:00:00Z",
+          "received_at": "2026-11-09T11:01:00Z",
+          "transaction_id": "tx1",
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "transaction",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-transaction",
+          "check": "transaction",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-09T11:00:00Z",
+          "received_at": "2026-11-09T11:01:00Z",
+          "transaction_id": "tx1",
+          "evidence_refs": [
+            "capture",
+            "order"
+          ]
+        },
+        {
+          "evidence_id": "webhook",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-webhook",
+          "check": "webhook",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-09T11:00:00Z",
+          "received_at": "2026-11-09T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        }
+      ]
+    },
+    "output": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "status": "DEGRADED",
+      "supported_capabilities": [],
+      "missing_checks": [
+        "configuration",
+        "connectivity",
+        "transaction",
+        "webhook"
+      ],
+      "stale_evidence_warnings": [
+        "Stale evidence: capture",
+        "Stale evidence: config",
+        "Stale evidence: connect",
+        "Stale evidence: order",
+        "Stale evidence: transaction",
+        "Stale evidence: webhook"
+      ],
+      "incomplete_evidence_warnings": [],
+      "supporting_evidence_ids": [],
+      "contradictory_evidence_ids": [],
+      "last_successful_checks": {
+        "configuration": "2026-11-09T11:00:00Z",
+        "connectivity": "2026-11-09T11:00:00Z",
+        "transaction": "2026-11-09T11:00:00Z",
+        "webhook": "2026-11-09T11:00:00Z"
+      },
+      "facts": [
+        {
+          "evidence_id": "capture",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "config",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "connect",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "order",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "transaction",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "webhook",
+          "field": "status",
+          "value": "success"
+        }
+      ],
+      "assumptions": [
+        "Source provenance and project access are authenticated by the exporting caller.",
+        "Supplied clock times and the configured freshness window are appropriate for this integration.",
+        "Observed success is limited to the named environment and supplied checks; it is not production certification."
+      ],
+      "suggested_next_diagnostic_action": "Inspect or obtain authorized evidence for: configuration, connectivity, transaction, webhook. No check is executed by this module.",
+      "human_review_required": true,
+      "production_certification": false
+    }
+  },
+  "missing_webhook": {
+    "input": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "max_age_seconds": 86400,
+      "webhook_required": true,
+      "incomplete_evidence_warnings": [],
+      "evidence": [
+        {
+          "evidence_id": "config",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-config",
+          "check": "configuration",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "connect",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-connect",
+          "check": "connectivity",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "capture",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-capture",
+          "check": "provider_capture",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": "tx1",
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "order",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-order",
+          "check": "order_completion",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": "tx1",
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "transaction",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-transaction",
+          "check": "transaction",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": "tx1",
+          "evidence_refs": [
+            "capture",
+            "order"
+          ]
+        }
+      ]
+    },
+    "output": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "status": "DEGRADED",
+      "supported_capabilities": [
+        {
+          "name": "configuration_observed",
+          "evidence_ids": [
+            "config"
+          ]
+        },
+        {
+          "name": "provider_connectivity_observed",
+          "evidence_ids": [
+            "connect"
+          ]
+        },
+        {
+          "name": "end_to_end_transaction_observed",
+          "evidence_ids": [
+            "capture",
+            "order",
+            "transaction"
+          ]
+        }
+      ],
+      "missing_checks": [
+        "webhook"
+      ],
+      "stale_evidence_warnings": [],
+      "incomplete_evidence_warnings": [],
+      "supporting_evidence_ids": [
+        "capture",
+        "config",
+        "connect",
+        "order",
+        "transaction"
+      ],
+      "contradictory_evidence_ids": [],
+      "last_successful_checks": {
+        "configuration": "2026-11-11T11:00:00Z",
+        "connectivity": "2026-11-11T11:00:00Z",
+        "transaction": "2026-11-11T11:00:00Z"
+      },
+      "facts": [
+        {
+          "evidence_id": "capture",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "config",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "connect",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "order",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "transaction",
+          "field": "status",
+          "value": "success"
+        }
+      ],
+      "assumptions": [
+        "Source provenance and project access are authenticated by the exporting caller.",
+        "Supplied clock times and the configured freshness window are appropriate for this integration.",
+        "Observed success is limited to the named environment and supplied checks; it is not production certification."
+      ],
+      "suggested_next_diagnostic_action": "Inspect or obtain authorized evidence for: webhook. No check is executed by this module.",
+      "human_review_required": true,
+      "production_certification": false
+    }
+  },
+  "contradictory_claim": {
+    "input": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "max_age_seconds": 86400,
+      "webhook_required": true,
+      "incomplete_evidence_warnings": [],
+      "evidence": [
+        {
+          "evidence_id": "config",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-config",
+          "check": "configuration",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "connect",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-connect",
+          "check": "connectivity",
+          "outcome": "success",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "failed",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-failed",
+          "check": "transaction",
+          "outcome": "failure",
+          "source": "simulation_runner",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        },
+        {
+          "evidence_id": "claim",
+          "project_id": "project1",
+          "integration_id": "integration1",
+          "environment": "simulation",
+          "event_id": "event-claim",
+          "check": "health_claim",
+          "outcome": "success",
+          "source": "operator_claim",
+          "checked_at": "2026-11-11T11:00:00Z",
+          "received_at": "2026-11-11T11:01:00Z",
+          "transaction_id": null,
+          "evidence_refs": []
+        }
+      ]
+    },
+    "output": {
+      "schema_version": "1",
+      "project_id": "project1",
+      "integration_id": "integration1",
+      "environment": "simulation",
+      "as_of": "2026-11-11T12:00:00Z",
+      "status": "DEGRADED",
+      "supported_capabilities": [
+        {
+          "name": "configuration_observed",
+          "evidence_ids": [
+            "config"
+          ]
+        },
+        {
+          "name": "provider_connectivity_observed",
+          "evidence_ids": [
+            "connect"
+          ]
+        }
+      ],
+      "missing_checks": [
+        "transaction",
+        "webhook"
+      ],
+      "stale_evidence_warnings": [],
+      "incomplete_evidence_warnings": [],
+      "supporting_evidence_ids": [
+        "config",
+        "connect"
+      ],
+      "contradictory_evidence_ids": [
+        "claim",
+        "failed"
+      ],
+      "last_successful_checks": {
+        "configuration": "2026-11-11T11:00:00Z",
+        "connectivity": "2026-11-11T11:00:00Z"
+      },
+      "facts": [
+        {
+          "evidence_id": "claim",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "config",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "connect",
+          "field": "status",
+          "value": "success"
+        },
+        {
+          "evidence_id": "failed",
+          "field": "status",
+          "value": "failure"
+        }
+      ],
+      "assumptions": [
+        "Source provenance and project access are authenticated by the exporting caller.",
+        "Supplied clock times and the configured freshness window are appropriate for this integration.",
+        "Observed success is limited to the named environment and supplied checks; it is not production certification."
+      ],
+      "suggested_next_diagnostic_action": "Inspect or obtain authorized evidence for: transaction, webhook. No check is executed by this module.",
+      "human_review_required": true,
+      "production_certification": false
+    }
+  }
+}

@@ -1,0 +1,250 @@
+{
+  "$defs": {
+    "DiagnosisEvidenceView": {
+      "properties": {
+        "effect_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effect Key"
+        },
+        "entity_id": {
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "event_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Event Id"
+        },
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "observed_at": {
+          "format": "date-time",
+          "title": "Observed At",
+          "type": "string"
+        },
+        "occurred_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Occurred At"
+        },
+        "provenance_label": {
+          "title": "Provenance Label",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "provider",
+            "merchant",
+            "simulation",
+            "operator",
+            "untrusted_log"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "source",
+        "kind",
+        "entity_id",
+        "status",
+        "observed_at",
+        "provenance_label"
+      ],
+      "title": "DiagnosisEvidenceView",
+      "type": "object"
+    }
+  },
+  "description": "Advisory only. It cannot approve, execute or alter anything; recovery guards decide what may happen.",
+  "properties": {
+    "advisory_only": {
+      "const": true,
+      "default": true,
+      "title": "Advisory Only",
+      "type": "boolean"
+    },
+    "authority": {
+      "default": "Diagnosis is advisory text for a human. It never approves, previews, executes or changes a recovery, never contacts a provider and never moves funds. Merchant-side facts are simulated; provider facts carry their own provenance label.",
+      "title": "Authority",
+      "type": "string"
+    },
+    "case_id": {
+      "title": "Case Id",
+      "type": "string"
+    },
+    "citations_resolved": {
+      "const": true,
+      "default": true,
+      "title": "Citations Resolved",
+      "type": "boolean"
+    },
+    "diagnosis": {
+      "additionalProperties": true,
+      "title": "Diagnosis",
+      "type": "object"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/DiagnosisEvidenceView"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "evidence_fingerprint": {
+      "title": "Evidence Fingerprint",
+      "type": "string"
+    },
+    "human_review_required": {
+      "const": true,
+      "default": true,
+      "title": "Human Review Required",
+      "type": "boolean"
+    },
+    "incomplete_evidence_warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Incomplete Evidence Warnings",
+      "type": "array"
+    },
+    "kind": {
+      "enum": [
+        "DUPLICATE_ORDERS",
+        "PAID_NOT_APPLIED",
+        "STALE_PAID_AFTER_REFUND",
+        "FALSE_HEALTHY"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "llm_diagnosis": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Llm Diagnosis"
+    },
+    "llm_evaluation": {
+      "enum": [
+        "NOT_RUN",
+        "VALID",
+        "REJECTED"
+      ],
+      "title": "Llm Evaluation",
+      "type": "string"
+    },
+    "llm_rejection": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Llm Rejection"
+    },
+    "mode": {
+      "enum": [
+        "RULES_ONLY",
+        "RULES_AND_LLM"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "observation_window_complete": {
+      "title": "Observation Window Complete",
+      "type": "boolean"
+    },
+    "payment_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Payment Id"
+    },
+    "plan_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Plan Id"
+    },
+    "plan_version": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Plan Version"
+    }
+  },
+  "required": [
+    "case_id",
+    "kind",
+    "payment_id",
+    "plan_id",
+    "plan_version",
+    "evidence_fingerprint",
+    "mode",
+    "llm_evaluation",
+    "diagnosis",
+    "evidence",
+    "observation_window_complete",
+    "incomplete_evidence_warnings"
+  ],
+  "title": "DiagnosisResponse",
+  "type": "object"
+}

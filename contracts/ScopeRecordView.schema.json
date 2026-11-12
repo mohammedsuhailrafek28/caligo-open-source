@@ -1,0 +1,56 @@
+{
+  "$defs": {
+    "ScopeKind": {
+      "enum": [
+        "ORIGINAL",
+        "CHANGE_REQUEST",
+        "APPROVAL",
+        "DELIVERY_NOTE"
+      ],
+      "title": "ScopeKind",
+      "type": "string"
+    }
+  },
+  "description": "Append-only source record. `source_sha256` is computed by the server over `content`.",
+  "properties": {
+    "content": {
+      "title": "Content",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/ScopeKind"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "source_label": {
+      "title": "Source Label",
+      "type": "string"
+    },
+    "source_sha256": {
+      "title": "Source Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "kind",
+    "source_label",
+    "source_sha256",
+    "content",
+    "created_at"
+  ],
+  "title": "ScopeRecordView",
+  "type": "object"
+}

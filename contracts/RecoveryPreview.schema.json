@@ -1,0 +1,117 @@
+{
+  "$defs": {
+    "RecoveryPreviewStep": {
+      "properties": {
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "WOULD_APPLY",
+            "ALREADY_DONE",
+            "BLOCKED"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "step_id": {
+          "title": "Step Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "step_id",
+        "kind",
+        "description",
+        "status"
+      ],
+      "title": "RecoveryPreviewStep",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "blockers": {
+      "items": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "type": "object"
+      },
+      "title": "Blockers",
+      "type": "array"
+    },
+    "evidence_fingerprint": {
+      "title": "Evidence Fingerprint",
+      "type": "string"
+    },
+    "fresh_evidence_fingerprint": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Fresh Evidence Fingerprint"
+    },
+    "guarantees": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Guarantees",
+      "type": "object"
+    },
+    "plan_current": {
+      "title": "Plan Current",
+      "type": "boolean"
+    },
+    "plan_id": {
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "provider_fingerprint": {
+      "title": "Provider Fingerprint",
+      "type": "string"
+    },
+    "state": {
+      "title": "State",
+      "type": "string"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/RecoveryPreviewStep"
+      },
+      "title": "Steps",
+      "type": "array"
+    },
+    "version": {
+      "title": "Version",
+      "type": "integer"
+    },
+    "would_execute": {
+      "title": "Would Execute",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "plan_id",
+    "version",
+    "state",
+    "plan_current",
+    "would_execute",
+    "blockers",
+    "steps",
+    "provider_fingerprint",
+    "evidence_fingerprint",
+    "fresh_evidence_fingerprint",
+    "guarantees"
+  ],
+  "title": "RecoveryPreview",
+  "type": "object"
+}

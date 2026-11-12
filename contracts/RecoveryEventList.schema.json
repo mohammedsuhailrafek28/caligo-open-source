@@ -1,0 +1,94 @@
+{
+  "$defs": {
+    "RecoveryEventView": {
+      "properties": {
+        "actor_seller_id": {
+          "title": "Actor Seller Id",
+          "type": "string"
+        },
+        "approved_fingerprint": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Approved Fingerprint"
+        },
+        "approved_version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Approved Version"
+        },
+        "created_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Created At"
+        },
+        "detail": {
+          "additionalProperties": true,
+          "title": "Detail",
+          "type": "object"
+        },
+        "event_type": {
+          "title": "Event Type",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "seq": {
+          "title": "Seq",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "seq",
+        "event_type",
+        "actor_seller_id",
+        "approved_version",
+        "approved_fingerprint",
+        "detail"
+      ],
+      "title": "RecoveryEventView",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "events": {
+      "items": {
+        "$ref": "#/$defs/RecoveryEventView"
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "plan_id": {
+      "title": "Plan Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "plan_id",
+    "events"
+  ],
+  "title": "RecoveryEventList",
+  "type": "object"
+}

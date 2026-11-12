@@ -1,0 +1,122 @@
+{
+  "$defs": {
+    "ContentVerification": {
+      "description": "What the server can honestly say about an artifact's bytes. A hash never proves authorship, creation time or receipt.",
+      "enum": [
+        "VERIFIED_SERVER_HASH",
+        "DECLARED_ONLY",
+        "UNAVAILABLE"
+      ],
+      "title": "ContentVerification",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "asserted_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Asserted At"
+    },
+    "content_verification": {
+      "$ref": "#/$defs/ContentVerification"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "ingested_at": {
+      "format": "date-time",
+      "title": "Ingested At",
+      "type": "string"
+    },
+    "is_latest": {
+      "title": "Is Latest",
+      "type": "boolean"
+    },
+    "media_type": {
+      "title": "Media Type",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "requirement_keys": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Requirement Keys",
+      "type": "array"
+    },
+    "sha256": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Sha256"
+    },
+    "size_bytes": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Size Bytes"
+    },
+    "supersedes_artifact_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Supersedes Artifact Id"
+    },
+    "version": {
+      "title": "Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "name",
+    "version",
+    "media_type",
+    "description",
+    "sha256",
+    "content_verification",
+    "size_bytes",
+    "asserted_at",
+    "ingested_at",
+    "supersedes_artifact_id",
+    "is_latest",
+    "requirement_keys"
+  ],
+  "title": "ArtifactView",
+  "type": "object"
+}

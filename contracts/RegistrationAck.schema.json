@@ -1,0 +1,13 @@
+{
+  "description": "Identical for new and already-registered emails (no account enumeration).",
+  "properties": {
+    "status": {
+      "const": "registered",
+      "default": "registered",
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "title": "RegistrationAck",
+  "type": "object"
+}

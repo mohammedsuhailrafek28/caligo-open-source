@@ -1,0 +1,47 @@
+{
+  "$defs": {
+    "BuyerDecision": {
+      "description": "Distinct buyer acts. Acknowledging receipt is not accepting the work, and neither is a payment dispute.",
+      "enum": [
+        "APPROVE_CHANGE",
+        "REJECT_CHANGE",
+        "ACKNOWLEDGE_DELIVERY",
+        "ACCEPT_DELIVERY",
+        "DISPUTE_DELIVERY"
+      ],
+      "title": "BuyerDecision",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "decision": {
+      "$ref": "#/$defs/BuyerDecision"
+    },
+    "session_token": {
+      "maxLength": 200,
+      "minLength": 20,
+      "title": "Session Token",
+      "type": "string"
+    },
+    "statement": {
+      "anyOf": [
+        {
+          "maxLength": 500,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Statement"
+    }
+  },
+  "required": [
+    "session_token",
+    "decision"
+  ],
+  "title": "BuyerDecideRequest",
+  "type": "object"
+}

@@ -1,0 +1,5 @@
+# Optional NLP environment. Install CPU torch first from its official CPU index.
+# python -m pip install torch==2.15.0+cpu --index-url https://download.pytorch.org/whl/cpu
+stanza==1.15.0
+psutil==7.2.2
+defusedxml==0.7.1

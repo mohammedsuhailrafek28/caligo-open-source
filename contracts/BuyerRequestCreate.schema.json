@@ -1,0 +1,51 @@
+{
+  "$defs": {
+    "BuyerRequestKind": {
+      "enum": [
+        "SCOPE_CHANGE_APPROVAL",
+        "DELIVERY_REVIEW"
+      ],
+      "title": "BuyerRequestKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Asks an e-mail address to decide. The link and the code go to that mailbox only; the seller never receives them.",
+  "properties": {
+    "artifact_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 50,
+      "title": "Artifact Ids",
+      "type": "array"
+    },
+    "buyer_email": {
+      "format": "email",
+      "title": "Buyer Email",
+      "type": "string"
+    },
+    "change_id": {
+      "anyOf": [
+        {
+          "maxLength": 36,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Change Id"
+    },
+    "kind": {
+      "$ref": "#/$defs/BuyerRequestKind"
+    }
+  },
+  "required": [
+    "kind",
+    "buyer_email"
+  ],
+  "title": "BuyerRequestCreate",
+  "type": "object"
+}

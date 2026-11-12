@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "BuyerRequestKind": {
+      "enum": [
+        "SCOPE_CHANGE_APPROVAL",
+        "DELIVERY_REVIEW"
+      ],
+      "title": "BuyerRequestKind",
+      "type": "string"
+    },
+    "BuyerRequestStatus": {
+      "enum": [
+        "PENDING",
+        "DECIDED",
+        "CANCELLED"
+      ],
+      "title": "BuyerRequestStatus",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "artifact_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Artifact Ids",
+      "type": "array"
+    },
+    "buyer_email_masked": {
+      "title": "Buyer Email Masked",
+      "type": "string"
+    },
+    "change_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Change Id"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "decided_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Decided At"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/BuyerRequestKind"
+    },
+    "link_opened": {
+      "title": "Link Opened",
+      "type": "boolean"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/BuyerRequestStatus"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "kind",
+    "change_id",
+    "artifact_ids",
+    "buyer_email_masked",
+    "status",
+    "expires_at",
+    "created_at",
+    "link_opened",
+    "decided_at"
+  ],
+  "title": "BuyerRequestView",
+  "type": "object"
+}

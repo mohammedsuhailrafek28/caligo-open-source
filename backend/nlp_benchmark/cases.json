@@ -1,0 +1,336 @@
+[
+  {
+    "id": "captured-write-failed",
+    "split": "development",
+    "texts": [
+      "Payment capture succeeded but merchant database write failed."
+    ],
+    "failure_clues": [
+      "failure"
+    ],
+    "root_cause": "capture_order_divergence"
+  },
+  {
+    "id": "duplicate-webhook",
+    "split": "development",
+    "texts": [
+      "Duplicate webhook delivery received."
+    ],
+    "failure_clues": [
+      "duplicate"
+    ],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "inventory-twice",
+    "split": "development",
+    "texts": [
+      "Inventory stock deducted twice."
+    ],
+    "failure_clues": [
+      "duplicate"
+    ],
+    "root_cause": "duplicate_side_effects"
+  },
+  {
+    "id": "refund-late-paid",
+    "split": "development",
+    "texts": [
+      "Refund recorded; a stale paid event arrived."
+    ],
+    "failure_clues": [
+      "stale"
+    ],
+    "root_cause": "stale_paid_after_refund"
+  },
+  {
+    "id": "health-no-e2e",
+    "split": "development",
+    "texts": [
+      "Integration is healthy but no successful end-to-end transaction exists."
+    ],
+    "failure_clues": [],
+    "root_cause": "unproven_integration_health"
+  },
+  {
+    "id": "timeout-retry",
+    "split": "development",
+    "texts": [
+      "Database timeout; retry scheduled."
+    ],
+    "failure_clues": [
+      "timeout",
+      "retry"
+    ],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "negative",
+    "split": "development",
+    "texts": [
+      "The database did not fail."
+    ],
+    "failure_clues": [],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "empty",
+    "split": "development",
+    "texts": [
+      ""
+    ],
+    "failure_clues": [],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "broken-ledger",
+    "split": "test",
+    "texts": [
+      "Payment captured; the merchant database broke during the write."
+    ],
+    "failure_clues": [
+      "failure"
+    ],
+    "root_cause": "capture_order_divergence"
+  },
+  {
+    "id": "lost-write",
+    "split": "test",
+    "texts": [
+      "Capture confirmed, but the database lost the order update."
+    ],
+    "failure_clues": [
+      "failure"
+    ],
+    "root_cause": "capture_order_divergence"
+  },
+  {
+    "id": "declined-save",
+    "split": "test",
+    "texts": [
+      "The merchant order update was rejected after capture."
+    ],
+    "failure_clues": [
+      "failure"
+    ],
+    "root_cause": "capture_order_divergence"
+  },
+  {
+    "id": "no-problem",
+    "split": "test",
+    "texts": [
+      "Payment captured and the merchant order completed normally."
+    ],
+    "failure_clues": [],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "duplicate-transport",
+    "split": "test",
+    "texts": [
+      "The webhook was delivered twice; one order exists."
+    ],
+    "failure_clues": [
+      "duplicate"
+    ],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "replayed-hook",
+    "split": "test",
+    "texts": [
+      "The webhook replayed after reconnecting."
+    ],
+    "failure_clues": [
+      "retry"
+    ],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "duplicate-orders",
+    "split": "test",
+    "texts": [
+      "Duplicate webhook created order_id=ord-A and order_id=ord-B."
+    ],
+    "failure_clues": [
+      "duplicate"
+    ],
+    "root_cause": "duplicate_payment_orders"
+  },
+  {
+    "id": "inventory-repetition",
+    "split": "test",
+    "texts": [
+      "The inventory deduction repeated for a single purchase."
+    ],
+    "failure_clues": [
+      "duplicate"
+    ],
+    "root_cause": "duplicate_side_effects"
+  },
+  {
+    "id": "stock-twice",
+    "split": "test",
+    "texts": [
+      "Stock inventory was reduced twice for one order."
+    ],
+    "failure_clues": [
+      "duplicate"
+    ],
+    "root_cause": "duplicate_side_effects"
+  },
+  {
+    "id": "nonduplicate",
+    "split": "test",
+    "texts": [
+      "Inventory was not deducted twice."
+    ],
+    "failure_clues": [],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "late-settlement",
+    "split": "test",
+    "texts": [
+      "A refund was recorded before a late paid notification."
+    ],
+    "failure_clues": [
+      "stale"
+    ],
+    "root_cause": "stale_paid_after_refund"
+  },
+  {
+    "id": "reimbursed-stale",
+    "split": "test",
+    "texts": [
+      "The payment was reimbursed; a stale settled event arrived afterward."
+    ],
+    "failure_clues": [
+      "stale"
+    ],
+    "root_cause": "stale_paid_after_refund"
+  },
+  {
+    "id": "refund-only",
+    "split": "test",
+    "texts": [
+      "Refund was completed."
+    ],
+    "failure_clues": [],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "misleading-green",
+    "split": "test",
+    "texts": [
+      "Integration operational, but no successful e2e transaction was recorded."
+    ],
+    "failure_clues": [],
+    "root_cause": "unproven_integration_health"
+  },
+  {
+    "id": "config-only",
+    "split": "test",
+    "texts": [
+      "Configuration loaded. Nothing establishes a payment outcome."
+    ],
+    "failure_clues": [],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "froze",
+    "split": "test",
+    "texts": [
+      "The order worker froze and retried the database task."
+    ],
+    "failure_clues": [
+      "crash",
+      "retry"
+    ],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "dying-worker",
+    "split": "test",
+    "texts": [
+      "The webhook worker died while retrying delivery."
+    ],
+    "failure_clues": [
+      "crash",
+      "retry"
+    ],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "timed-out",
+    "split": "test",
+    "texts": [
+      "The database timed out; resending the webhook."
+    ],
+    "failure_clues": [
+      "timeout",
+      "retry"
+    ],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "silent-hang",
+    "split": "test",
+    "texts": [
+      "The integration hung during an order check."
+    ],
+    "failure_clues": [
+      "timeout"
+    ],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "hypothetical",
+    "split": "test",
+    "texts": [
+      "If the database fails, retry the request."
+    ],
+    "failure_clues": [],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "negated-failure",
+    "split": "test",
+    "texts": [
+      "The merchant database never failed and no retry was needed."
+    ],
+    "failure_clues": [],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "ambiguous",
+    "split": "test",
+    "texts": [
+      "The order might have encountered an issue."
+    ],
+    "failure_clues": [],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "contradiction",
+    "split": "test",
+    "texts": [
+      "Payment captured. Payment was not captured. Merchant database failed."
+    ],
+    "failure_clues": [
+      "failure"
+    ],
+    "root_cause": "inconclusive"
+  },
+  {
+    "id": "missing",
+    "split": "test",
+    "texts": [
+      "Status unavailable because evidence was truncated."
+    ],
+    "failure_clues": [
+      "failure"
+    ],
+    "root_cause": "inconclusive"
+  }
+]

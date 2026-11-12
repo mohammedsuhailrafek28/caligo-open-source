@@ -1,0 +1,133 @@
+{
+  "authority": "Recovery cases are advisory. They are derived from stored provider observations, unverified merchant claims, reconciliation records and instruction records; they never change a payment, release a hold or promote a claim to provider evidence, and Caligo performs none of the recommended steps.",
+  "cases": [
+    {
+      "advisory_only": true,
+      "basis_sha256": "fbcdba96eec7877f481f2d999c3b051799c504bbc090a50a865ea0c6ae0e5239",
+      "case_id": "rc_f8bd3b5625f3a4c74db7aa7d",
+      "category": "AMOUNT_OR_CURRENCY_MISMATCH",
+      "citations": [
+        {
+          "confidence": "UNVERIFIED_CLAIM",
+          "id": "35777fd1-cf89-4ae4-be4a-696fdfa66f13",
+          "kind": "OBSERVATION",
+          "payload_sha256": "389eaf0e69f779620005ee7ef514155c60e4ee1e64def6f5f5e92400d0fafde5",
+          "source": "MERCHANT_IMPORT"
+        },
+        {
+          "confidence": "PROVIDER_EVIDENCE",
+          "id": "69fe2706-1033-45df-acd3-a6fce745b2d7",
+          "kind": "OBSERVATION",
+          "payload_sha256": "b4aa49e518d373fef3b96a95613e59c4c67e45e72170844fe1c1f6d8a994a741",
+          "source": "PROVIDER_API"
+        },
+        {
+          "confidence": "UNVERIFIED_CLAIM",
+          "id": "d0db3ecc-1500-4729-8dd5-ab4df49de914",
+          "kind": "OBSERVATION",
+          "payload_sha256": "170506af61206a4bfc5acdc3a29c2f6d48fe62fce9b9782ebb1022f6c21fbc2c",
+          "source": "MERCHANT_IMPORT"
+        }
+      ],
+      "citations_total": 3,
+      "citations_verified": true,
+      "confidence": "CLAIM_VS_PROVIDER",
+      "confidence_limits": [
+        "Claims are unverified; the provider's record is what reconciliation judges."
+      ],
+      "current_state": {
+        "authoritative_status": "PAID",
+        "claimed_paid_minor": 105000,
+        "claims_truncated": false,
+        "currency": "USD",
+        "evidence_complete": true,
+        "evidence_gap_count": 0,
+        "hold_active": false,
+        "invoice_amount_minor": 120000,
+        "invoice_number": "PEM-B76ECFABAF1A332008D9",
+        "provider_paid_minor": 120000
+      },
+      "derived_from": [
+        "CLAIMED_TOTAL_DIFFERS_FROM_PROVIDER",
+        "CLAIM_AMOUNT_MISMATCH"
+      ],
+      "evidence_complete": true,
+      "explanation": "A record disagrees with another on amount or currency (a claim against the provider's record or the invoice, or the provider's own totals). Details: The claim says 100000 minor units; the provider reported 120000 for the same transaction.; Claimed payments total 105000; PayPal payments the provider reported total 120000.",
+      "payment_id": "f9637ef1-0163-4471-b4f3-c3750436911d",
+      "prohibited_automated_actions": [
+        "Issue, approve or request a refund",
+        "Capture, transfer or move funds",
+        "Cancel, void, send or modify a PayPal invoice",
+        "Mark a payment as paid or verified because of a merchant or seller claim",
+        "Release, override or bypass a payment-instruction hold",
+        "Edit or delete stored observations, gaps or history"
+      ],
+      "project_id": "783eed50-91a9-462b-9032-1f88f23174d9",
+      "recommended_next_action": "Compare the records with the transaction in your PayPal dashboard and correct whichever is wrong. Contact the buyer only through a channel you already trust.",
+      "severity": "CONFLICT"
+    },
+    {
+      "advisory_only": true,
+      "basis_sha256": "a47f3f8533045fa23eeb8415ca545af14115922540f87db27628091cf414c588",
+      "case_id": "rc_ee1fb28ae6d4bb175dbf1cbe",
+      "category": "CLAIM_NOT_CORROBORATED",
+      "citations": [
+        {
+          "confidence": "PROVIDER_EVIDENCE",
+          "id": "1a37fb89-3f9c-447d-8c90-63d9fa83bb33",
+          "kind": "OBSERVATION",
+          "payload_sha256": "97f92b7ce9a850a8c667457e2f193b875e989dfb5e7d6747386b08b673f8f0ef",
+          "source": "PROVIDER_API"
+        },
+        {
+          "confidence": "UNVERIFIED_CLAIM",
+          "id": "d0db3ecc-1500-4729-8dd5-ab4df49de914",
+          "kind": "OBSERVATION",
+          "payload_sha256": "170506af61206a4bfc5acdc3a29c2f6d48fe62fce9b9782ebb1022f6c21fbc2c",
+          "source": "MERCHANT_IMPORT"
+        }
+      ],
+      "citations_total": 2,
+      "citations_verified": true,
+      "confidence": "CLAIM_VS_PROVIDER",
+      "confidence_limits": [
+        "The claim is unverified.",
+        "Provider evidence is a snapshot of what Caligo's last sync saw."
+      ],
+      "current_state": {
+        "authoritative_status": "PAID",
+        "claimed_paid_minor": 105000,
+        "claims_truncated": false,
+        "currency": "USD",
+        "evidence_complete": true,
+        "evidence_gap_count": 0,
+        "hold_active": false,
+        "invoice_amount_minor": 120000,
+        "invoice_number": "PEM-B76ECFABAF1A332008D9",
+        "provider_paid_minor": 120000
+      },
+      "derived_from": [
+        "CLAIM_NOT_IN_PROVIDER_EVIDENCE"
+      ],
+      "evidence_complete": true,
+      "explanation": "A merchant or seller claim cannot be matched to the provider's stored evidence for this payment (the transaction is not in it, or the claim carries no transaction reference). Details: The provider's evidence for this invoice does not contain this transaction.",
+      "payment_id": "f9637ef1-0163-4471-b4f3-c3750436911d",
+      "prohibited_automated_actions": [
+        "Issue, approve or request a refund",
+        "Capture, transfer or move funds",
+        "Cancel, void, send or modify a PayPal invoice",
+        "Mark a payment as paid or verified because of a merchant or seller claim",
+        "Release, override or bypass a payment-instruction hold",
+        "Edit or delete stored observations, gaps or history"
+      ],
+      "project_id": "783eed50-91a9-462b-9032-1f88f23174d9",
+      "recommended_next_action": "Check the transaction reference against your PayPal dashboard, then correct the claim or sync again later. Do not treat the claim as a received payment.",
+      "severity": "WARNING"
+    }
+  ],
+  "cases_sha256": "9a8c28ac8746b9cabe4284409b3a1bf90b1c2a3ed81304c2b0ac772973778e2b",
+  "limit": 25,
+  "offset": 0,
+  "project_id": "783eed50-91a9-462b-9032-1f88f23174d9",
+  "total_payments": 1
+}

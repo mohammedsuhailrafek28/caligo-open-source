@@ -1,0 +1,136 @@
+{
+  "$defs": {
+    "BaselineKind": {
+      "enum": [
+        "ORIGINAL",
+        "AMENDED"
+      ],
+      "title": "BaselineKind",
+      "type": "string"
+    },
+    "RequirementView": {
+      "properties": {
+        "baseline_id": {
+          "title": "Baseline Id",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "origin": {
+          "title": "Origin",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "baseline_id",
+        "key",
+        "title",
+        "description",
+        "origin",
+        "created_at"
+      ],
+      "title": "RequirementView",
+      "type": "object"
+    }
+  },
+  "description": "An immutable, versioned snapshot of what was agreed. `content_sha256` covers the requirements only.",
+  "properties": {
+    "change_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Change Id"
+    },
+    "content_sha256": {
+      "title": "Content Sha256",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/BaselineKind"
+    },
+    "previous_baseline_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Previous Baseline Id"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/RequirementView"
+      },
+      "title": "Requirements",
+      "type": "array"
+    },
+    "source_scope_record_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Source Scope Record Id"
+    },
+    "version": {
+      "title": "Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "version",
+    "kind",
+    "source_scope_record_id",
+    "previous_baseline_id",
+    "change_id",
+    "content_sha256",
+    "created_at"
+  ],
+  "title": "BaselineView",
+  "type": "object"
+}

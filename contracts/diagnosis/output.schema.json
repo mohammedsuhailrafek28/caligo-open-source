@@ -1,0 +1,167 @@
+{
+  "$defs": {
+    "Fact": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "field": {
+          "enum": [
+            "source",
+            "kind",
+            "entity_id",
+            "payment_id",
+            "status",
+            "event_id",
+            "effect_key"
+          ],
+          "title": "Field",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "field",
+        "value"
+      ],
+      "title": "Fact",
+      "type": "object"
+    },
+    "Hypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "statement": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 2000,
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "statement",
+        "evidence_ids"
+      ],
+      "title": "Hypothesis",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "case_id": {
+      "title": "Case Id",
+      "type": "string"
+    },
+    "method": {
+      "enum": [
+        "rules",
+        "llm"
+      ],
+      "title": "Method",
+      "type": "string"
+    },
+    "classification": {
+      "enum": [
+        "duplicate_payment_orders",
+        "capture_order_divergence",
+        "stale_paid_after_refund",
+        "unproven_integration_health",
+        "duplicate_side_effects",
+        "repeated_recovery",
+        "inconclusive"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "suspected_root_cause": {
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Suspected Root Cause",
+      "type": "string"
+    },
+    "supporting_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+    },
+    "contradictory_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Contradictory Evidence Ids",
+      "type": "array"
+    },
+    "facts": {
+      "items": {
+        "$ref": "#/$defs/Fact"
+      },
+      "title": "Facts",
+      "type": "array"
+    },
+    "hypotheses": {
+      "items": {
+        "$ref": "#/$defs/Hypothesis"
+      },
+      "title": "Hypotheses",
+      "type": "array"
+    },
+    "confidence_limitations": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Confidence Limitations",
+      "type": "array"
+    },
+    "human_investigation_steps": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Human Investigation Steps",
+      "type": "array"
+    },
+    "human_review_required": {
+      "const": true,
+      "default": true,
+      "title": "Human Review Required",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "case_id",
+    "method",
+    "classification",
+    "suspected_root_cause",
+    "supporting_evidence_ids",
+    "contradictory_evidence_ids",
+    "facts",
+    "hypotheses",
+    "confidence_limitations",
+    "human_investigation_steps"
+  ],
+  "title": "Diagnosis",
+  "type": "object"
+}

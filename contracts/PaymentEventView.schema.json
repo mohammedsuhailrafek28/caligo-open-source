@@ -1,0 +1,127 @@
+{
+  "$defs": {
+    "PaymentEventType": {
+      "enum": [
+        "INVOICE_CREATED",
+        "INVOICE_SENT",
+        "STATUS_CHANGED",
+        "AMOUNTS_UPDATED",
+        "ANOMALY",
+        "OPERATION_UNCERTAIN",
+        "OPERATION_FAILED",
+        "REVIEW_RESOLVED"
+      ],
+      "title": "PaymentEventType",
+      "type": "string"
+    },
+    "PaymentProviderStatus": {
+      "description": "Financial state derived ONLY from verified provider evidence by the reconciliation path.\nNever accepted from a client.",
+      "enum": [
+        "UNVERIFIED",
+        "PENDING",
+        "PARTIALLY_PAID",
+        "PAID",
+        "PARTIALLY_REFUNDED",
+        "REFUNDED",
+        "CANCELLED",
+        "NEEDS_REVIEW"
+      ],
+      "title": "PaymentProviderStatus",
+      "type": "string"
+    }
+  },
+  "description": "Append-only payment history entry.",
+  "properties": {
+    "actor": {
+      "enum": [
+        "SELLER",
+        "SYSTEM"
+      ],
+      "title": "Actor",
+      "type": "string"
+    },
+    "amount_paid_minor": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Amount Paid Minor"
+    },
+    "amount_refunded_minor": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Amount Refunded Minor"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "event_type": {
+      "$ref": "#/$defs/PaymentEventType"
+    },
+    "from_status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PaymentProviderStatus"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    },
+    "payment_id": {
+      "title": "Payment Id",
+      "type": "string"
+    },
+    "to_status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PaymentProviderStatus"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "id",
+    "payment_id",
+    "event_type",
+    "actor",
+    "created_at"
+  ],
+  "title": "PaymentEventView",
+  "type": "object"
+}

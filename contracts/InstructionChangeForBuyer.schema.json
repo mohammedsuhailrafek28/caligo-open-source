@@ -1,0 +1,94 @@
+{
+  "$defs": {
+    "InstructionValues": {
+      "properties": {
+        "amount_minor": {
+          "title": "Amount Minor",
+          "type": "integer"
+        },
+        "currency": {
+          "title": "Currency",
+          "type": "string"
+        },
+        "merchant_email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Merchant Email"
+        },
+        "recipient_email": {
+          "title": "Recipient Email",
+          "type": "string"
+        }
+      },
+      "required": [
+        "merchant_email",
+        "recipient_email",
+        "currency",
+        "amount_minor"
+      ],
+      "title": "InstructionValues",
+      "type": "object"
+    }
+  },
+  "description": "Rendered by the server from stored rows (never from seller-typed text) so the approver sees exactly what would be applied.",
+  "properties": {
+    "approvable": {
+      "title": "Approvable",
+      "type": "boolean"
+    },
+    "change_id": {
+      "title": "Change Id",
+      "type": "string"
+    },
+    "current": {
+      "$ref": "#/$defs/InstructionValues"
+    },
+    "from_fingerprint": {
+      "title": "From Fingerprint",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "proposed": {
+      "$ref": "#/$defs/InstructionValues"
+    },
+    "proposed_fingerprint": {
+      "title": "Proposed Fingerprint",
+      "type": "string"
+    },
+    "seller_reason": {
+      "title": "Seller Reason",
+      "type": "string"
+    },
+    "trust_note": {
+      "default": "The second channel was established by the operator for this demo; it is not verified real-world identity and is not independent of the seller if the seller is also the operator. The current values may themselves be an unverified seller entry (version 1 is never independently verified).",
+      "title": "Trust Note",
+      "type": "string"
+    },
+    "withdrawn_by_seller": {
+      "title": "Withdrawn By Seller",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "project_id",
+    "change_id",
+    "current",
+    "proposed",
+    "from_fingerprint",
+    "proposed_fingerprint",
+    "seller_reason",
+    "withdrawn_by_seller",
+    "approvable"
+  ],
+  "title": "InstructionChangeForBuyer",
+  "type": "object"
+}

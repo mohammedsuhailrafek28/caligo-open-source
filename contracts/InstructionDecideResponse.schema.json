@@ -1,0 +1,97 @@
+{
+  "$defs": {
+    "AuthenticatorTrustBasis": {
+      "enum": [
+        "OPERATOR_ESTABLISHED"
+      ],
+      "title": "AuthenticatorTrustBasis",
+      "type": "string"
+    },
+    "InstructionChangeVerificationView": {
+      "properties": {
+        "applied_instruction_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Applied Instruction Id"
+        },
+        "change_id": {
+          "title": "Change Id",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "from_fingerprint": {
+          "title": "From Fingerprint",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "outcome": {
+          "$ref": "#/$defs/VerificationOutcome"
+        },
+        "proposed_fingerprint": {
+          "title": "Proposed Fingerprint",
+          "type": "string"
+        },
+        "trust_basis": {
+          "$ref": "#/$defs/AuthenticatorTrustBasis"
+        }
+      },
+      "required": [
+        "id",
+        "change_id",
+        "outcome",
+        "trust_basis",
+        "applied_instruction_id",
+        "from_fingerprint",
+        "proposed_fingerprint",
+        "created_at"
+      ],
+      "title": "InstructionChangeVerificationView",
+      "type": "object"
+    },
+    "VerificationOutcome": {
+      "enum": [
+        "APPLIED",
+        "REJECTED"
+      ],
+      "title": "VerificationOutcome",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "hold_active": {
+      "title": "Hold Active",
+      "type": "boolean"
+    },
+    "note": {
+      "default": "Authorized by an operator-established second channel; this is not verified real-world identity, not proof of independence from the seller, and version 1 of the instruction remains unverified.",
+      "title": "Note",
+      "type": "string"
+    },
+    "outcome": {
+      "$ref": "#/$defs/VerificationOutcome"
+    },
+    "verification": {
+      "$ref": "#/$defs/InstructionChangeVerificationView"
+    }
+  },
+  "required": [
+    "outcome",
+    "verification",
+    "hold_active"
+  ],
+  "title": "InstructionDecideResponse",
+  "type": "object"
+}

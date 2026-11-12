@@ -1,0 +1,60 @@
+{
+  "$defs": {
+    "AuditActor": {
+      "enum": [
+        "SELLER",
+        "BUYER_EMAIL_VERIFIED",
+        "SYSTEM"
+      ],
+      "title": "AuditActor",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "actor_role": {
+      "$ref": "#/$defs/AuditActor"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "detail": {
+      "additionalProperties": true,
+      "title": "Detail",
+      "type": "object"
+    },
+    "event_type": {
+      "title": "Event Type",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "subject_id": {
+      "title": "Subject Id",
+      "type": "string"
+    },
+    "subject_type": {
+      "title": "Subject Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "event_type",
+    "actor_role",
+    "subject_type",
+    "subject_id",
+    "detail",
+    "created_at"
+  ],
+  "title": "AuditEventView",
+  "type": "object"
+}

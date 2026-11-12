@@ -1,0 +1,36 @@
+{
+  "$defs": {
+    "ReviewResolution": {
+      "enum": [
+        "ACCEPT_PROVIDER_EVIDENCE",
+        "ABANDON_UNCREATED_INVOICE"
+      ],
+      "title": "ReviewResolution",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Leaving NEEDS_REVIEW is always an explicit seller decision with a recorded reason.",
+  "properties": {
+    "confirm_no_provider_invoice": {
+      "default": false,
+      "title": "Confirm No Provider Invoice",
+      "type": "boolean"
+    },
+    "note": {
+      "maxLength": 200,
+      "minLength": 10,
+      "title": "Note",
+      "type": "string"
+    },
+    "resolution": {
+      "$ref": "#/$defs/ReviewResolution"
+    }
+  },
+  "required": [
+    "resolution",
+    "note"
+  ],
+  "title": "ReviewResolutionRequest",
+  "type": "object"
+}

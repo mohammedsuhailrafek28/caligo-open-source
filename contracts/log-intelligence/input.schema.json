@@ -1,0 +1,361 @@
+{
+  "$defs": {
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "provider",
+            "merchant",
+            "simulation",
+            "operator",
+            "untrusted_log"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "event",
+            "payment",
+            "order",
+            "inventory",
+            "fulfillment",
+            "integration",
+            "recovery",
+            "log"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "entity_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "payment_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Payment Id",
+          "type": "string"
+        },
+        "status": {
+          "maxLength": 80,
+          "title": "Status",
+          "type": "string"
+        },
+        "observed_at": {
+          "format": "date-time",
+          "title": "Observed At",
+          "type": "string"
+        },
+        "occurred_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Occurred At"
+        },
+        "event_id": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Event Id"
+        },
+        "caused_by_event_id": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Caused By Event Id"
+        },
+        "effect_key": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effect Key"
+        },
+        "text": {
+          "default": "",
+          "maxLength": 4000,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "source",
+        "kind",
+        "entity_id",
+        "payment_id",
+        "status",
+        "observed_at"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "LogRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "log_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Log Id",
+          "type": "string"
+        },
+        "source_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "payment_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Payment Id",
+          "type": "string"
+        },
+        "environment": {
+          "enum": [
+            "simulation",
+            "sandbox"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "timestamp": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timestamp"
+        },
+        "received_at": {
+          "format": "date-time",
+          "title": "Received At",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "provider_authenticated",
+            "merchant",
+            "simulation",
+            "operator",
+            "untrusted_log"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "evidence_ref": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Evidence Ref",
+          "type": "string"
+        },
+        "event_id": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_.:-]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Event Id"
+        },
+        "truncated": {
+          "default": false,
+          "title": "Truncated",
+          "type": "boolean"
+        },
+        "text": {
+          "maxLength": 4096,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "log_id",
+        "source_id",
+        "project_id",
+        "payment_id",
+        "environment",
+        "received_at",
+        "provenance",
+        "evidence_ref",
+        "text"
+      ],
+      "title": "LogRecord",
+      "type": "object"
+    },
+    "ScopedEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "payment_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Payment Id",
+          "type": "string"
+        },
+        "environment": {
+          "enum": [
+            "simulation",
+            "sandbox"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "source_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "provider_authenticated",
+            "merchant",
+            "simulation",
+            "operator",
+            "untrusted_log"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        }
+      },
+      "required": [
+        "project_id",
+        "payment_id",
+        "environment",
+        "source_id",
+        "provenance",
+        "evidence"
+      ],
+      "title": "ScopedEvidence",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "project_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "payment_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Payment Id",
+      "type": "string"
+    },
+    "records": {
+      "items": {
+        "$ref": "#/$defs/LogRecord"
+      },
+      "maxItems": 100,
+      "title": "Records",
+      "type": "array"
+    },
+    "evidence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ScopedEvidence"
+      },
+      "maxItems": 2000,
+      "title": "Evidence",
+      "type": "array"
+    },
+    "incomplete_evidence_warnings": {
+      "default": [],
+      "items": {
+        "maxLength": 1000,
+        "type": "string"
+      },
+      "maxItems": 100,
+      "title": "Incomplete Evidence Warnings",
+      "type": "array"
+    },
+    "observation_window_complete": {
+      "default": false,
+      "title": "Observation Window Complete",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "project_id",
+    "payment_id",
+    "records"
+  ],
+  "title": "LogBatch",
+  "type": "object"
+}

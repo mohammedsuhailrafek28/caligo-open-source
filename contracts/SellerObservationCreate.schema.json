@@ -1,0 +1,96 @@
+{
+  "$defs": {
+    "ObservationKind": {
+      "enum": [
+        "PAYMENT",
+        "REFUND",
+        "INVOICE_STATE"
+      ],
+      "title": "ObservationKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A single claim typed by the seller. The source is always SELLER_ENTRY: it is not a request field.",
+  "properties": {
+    "amount_minor": {
+      "maximum": 2000000000,
+      "minimum": 1,
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "asserted_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Asserted At"
+    },
+    "claim_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Claim Id"
+    },
+    "currency": {
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "type": "string"
+    },
+    "invoice_number": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$",
+      "title": "Invoice Number",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/ObservationKind"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    },
+    "transaction_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,99}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Transaction Id"
+    }
+  },
+  "required": [
+    "invoice_number",
+    "kind",
+    "currency",
+    "amount_minor"
+  ],
+  "title": "SellerObservationCreate",
+  "type": "object"
+}

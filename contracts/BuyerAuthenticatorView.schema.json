@@ -1,0 +1,66 @@
+{
+  "$defs": {
+    "AuthenticatorTrustBasis": {
+      "enum": [
+        "OPERATOR_ESTABLISHED"
+      ],
+      "title": "AuthenticatorTrustBasis",
+      "type": "string"
+    }
+  },
+  "description": "What the seller may see: that a second channel exists, never the secret and never the full address.",
+  "properties": {
+    "buyer_email_masked": {
+      "title": "Buyer Email Masked",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "note": {
+      "default": "Operator-established second channel for a demo; this is not verified real-world identity, and it is not independent of the seller if the seller is also the operator.",
+      "title": "Note",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "revoked_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Revoked At"
+    },
+    "status": {
+      "title": "Status",
+      "type": "string"
+    },
+    "trust_basis": {
+      "$ref": "#/$defs/AuthenticatorTrustBasis"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "buyer_email_masked",
+    "trust_basis",
+    "status",
+    "created_at"
+  ],
+  "title": "BuyerAuthenticatorView",
+  "type": "object"
+}

@@ -1,0 +1,68 @@
+{
+  "$defs": {
+    "InstructionDecision": {
+      "enum": [
+        "APPROVE_INSTRUCTION_CHANGE",
+        "REJECT_INSTRUCTION_CHANGE"
+      ],
+      "title": "InstructionDecision",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "buyer_email": {
+      "format": "email",
+      "title": "Buyer Email",
+      "type": "string"
+    },
+    "challenge_id": {
+      "maxLength": 36,
+      "minLength": 1,
+      "title": "Challenge Id",
+      "type": "string"
+    },
+    "change_id": {
+      "maxLength": 36,
+      "minLength": 1,
+      "title": "Change Id",
+      "type": "string"
+    },
+    "decision": {
+      "$ref": "#/$defs/InstructionDecision"
+    },
+    "from_fingerprint": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "From Fingerprint",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 36,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "proposed_fingerprint": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Proposed Fingerprint",
+      "type": "string"
+    },
+    "totp_code": {
+      "pattern": "^[0-9]{6}$",
+      "title": "Totp Code",
+      "type": "string"
+    }
+  },
+  "required": [
+    "challenge_id",
+    "project_id",
+    "change_id",
+    "buyer_email",
+    "from_fingerprint",
+    "proposed_fingerprint",
+    "decision",
+    "totp_code"
+  ],
+  "title": "InstructionDecideRequest",
+  "type": "object"
+}

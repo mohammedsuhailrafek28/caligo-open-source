@@ -1,0 +1,80 @@
+{
+  "description": "One append-only registry version. SELLER_ASSERTED: the seller's own record, never provider or buyer evidence and never a verification.",
+  "properties": {
+    "chain_sha256": {
+      "title": "Chain Sha256",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "destination": {
+      "title": "Destination",
+      "type": "string"
+    },
+    "destination_sha256": {
+      "title": "Destination Sha256",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "label": {
+      "title": "Label",
+      "type": "string"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Note"
+    },
+    "payee_id": {
+      "title": "Payee Id",
+      "type": "string"
+    },
+    "previous_version_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Previous Version Id"
+    },
+    "provenance": {
+      "const": "SELLER_ASSERTED",
+      "title": "Provenance",
+      "type": "string"
+    },
+    "version": {
+      "title": "Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "payee_id",
+    "version",
+    "label",
+    "destination",
+    "destination_sha256",
+    "chain_sha256",
+    "previous_version_id",
+    "provenance",
+    "note",
+    "created_at"
+  ],
+  "title": "PayeeVersionView",
+  "type": "object"
+}

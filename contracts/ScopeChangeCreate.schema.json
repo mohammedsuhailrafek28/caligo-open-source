@@ -1,0 +1,76 @@
+{
+  "$defs": {
+    "RequirementDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "default": "",
+          "maxLength": 2000,
+          "title": "Description",
+          "type": "string"
+        },
+        "key": {
+          "pattern": "^[A-Z][A-Z0-9_-]{0,23}$",
+          "title": "Key",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "title"
+      ],
+      "title": "RequirementDraft",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A PROPOSED change. Nothing here can approve it: approval exists only as verified buyer evidence.",
+  "properties": {
+    "description": {
+      "default": "",
+      "maxLength": 2000,
+      "title": "Description",
+      "type": "string"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/RequirementDraft"
+      },
+      "maxItems": 50,
+      "minItems": 1,
+      "title": "Requirements",
+      "type": "array"
+    },
+    "supersedes_change_id": {
+      "anyOf": [
+        {
+          "maxLength": 36,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Supersedes Change Id"
+    },
+    "title": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "requirements"
+  ],
+  "title": "ScopeChangeCreate",
+  "type": "object"
+}

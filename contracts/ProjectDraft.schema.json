@@ -1,0 +1,16 @@
+{
+  "description": "Client input. The owning seller is derived from the session, never the body.",
+  "properties": {
+    "title": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "title": "ProjectDraft",
+  "type": "object"
+}

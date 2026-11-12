@@ -1,0 +1,241 @@
+{
+  "$defs": {
+    "ScreenExtracted": {
+      "description": "Literal text matches only; null where the text does not state the field. Never verified.",
+      "properties": {
+        "amount_minor": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Amount Minor"
+        },
+        "amount_span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScreenSpan"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Currency"
+        },
+        "emails": {
+          "items": {
+            "$ref": "#/$defs/ScreenExtractedEmail"
+          },
+          "title": "Emails",
+          "type": "array"
+        },
+        "invoice_reference": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Invoice Reference"
+        },
+        "invoice_reference_span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScreenSpan"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified": {
+          "const": false,
+          "default": false,
+          "title": "Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "emails",
+        "amount_minor",
+        "amount_span",
+        "currency",
+        "invoice_reference",
+        "invoice_reference_span"
+      ],
+      "title": "ScreenExtracted",
+      "type": "object"
+    },
+    "ScreenExtractedEmail": {
+      "properties": {
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScreenSpan"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "span"
+      ],
+      "title": "ScreenExtractedEmail",
+      "type": "object"
+    },
+    "ScreenSignal": {
+      "properties": {
+        "cites": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Cites",
+          "type": "array"
+        },
+        "code": {
+          "enum": [
+            "DESTINATION_DIFFERS_FROM_REGISTRY",
+            "DESTINATION_RECENTLY_CHANGED",
+            "DESTINATION_SUPERSEDED",
+            "DESTINATION_NOT_REGISTERED",
+            "DESTINATION_DIFFERS_FROM_INSTRUCTION",
+            "AMOUNT_DIFFERS_FROM_INSTRUCTION",
+            "CURRENCY_DIFFERS_FROM_INSTRUCTION",
+            "URGENCY_LANGUAGE",
+            "BANK_CHANGE_WORDING",
+            "SECRECY_LANGUAGE",
+            "TEXT_MENTIONS_OTHER_DESTINATION"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "spans": {
+          "items": {
+            "$ref": "#/$defs/ScreenSpan"
+          },
+          "title": "Spans",
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message",
+        "cites",
+        "spans"
+      ],
+      "title": "ScreenSignal",
+      "type": "object"
+    },
+    "ScreenSpan": {
+      "properties": {
+        "end": {
+          "title": "End",
+          "type": "integer"
+        },
+        "start": {
+          "title": "Start",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "ScreenSpan",
+      "type": "object"
+    }
+  },
+  "description": "Advisory only. There is deliberately no approved/cleared outcome: a screen cannot release a hold or authorize a payment.",
+  "properties": {
+    "advisory_only": {
+      "const": true,
+      "default": true,
+      "title": "Advisory Only",
+      "type": "boolean"
+    },
+    "authority": {
+      "default": "Advisory text for a human. It writes nothing, cannot approve, clear, release or override a payment hold, and does not verify a destination: independent verification is the buyer-side second-channel check (R2).",
+      "title": "Authority",
+      "type": "string"
+    },
+    "extracted": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ScreenExtracted"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "human_review_required": {
+      "const": true,
+      "default": true,
+      "title": "Human Review Required",
+      "type": "boolean"
+    },
+    "outcome": {
+      "enum": [
+        "NO_SIGNALS_FOUND",
+        "REVIEW_RECOMMENDED"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "signals": {
+      "items": {
+        "$ref": "#/$defs/ScreenSignal"
+      },
+      "title": "Signals",
+      "type": "array"
+    }
+  },
+  "required": [
+    "project_id",
+    "outcome",
+    "signals",
+    "extracted"
+  ],
+  "title": "PayeeScreenResponse",
+  "type": "object"
+}

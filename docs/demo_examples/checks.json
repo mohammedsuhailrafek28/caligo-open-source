@@ -1,0 +1,101 @@
+{
+  "passed": 19,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "buyer acknowledgment is mailbox-verified, not identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "first instruction is seller-entered and unverified",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "suspicious change triggers a hold",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "rejection leaves the instruction unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "approval applies the proposed version and releases the hold",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "recovery cases cover the ledger/provider conflict",
+      "passed": true,
+      "detail": "got ['AMOUNT_OR_CURRENCY_MISMATCH', 'CLAIM_NOT_CORROBORATED']"
+    },
+    {
+      "check": "every case is advisory, cited and lists prohibited actions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "report hash is reproducible",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "report is deterministic",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "every citation resolves to this project and payment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "report during the hold shows it pending with no authorization",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final report: hash chain intact and hold released",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "both authorization records present, consistent and never identity proof",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "only the approved version is shown as verified",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "provider status stays authoritative beside the conflicting claims",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "scope/delivery shows the buyer acknowledgment without acceptance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "markdown carries the trust limitation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no secrets or full authenticator data in the report",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no development or Sandbox state was touched",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

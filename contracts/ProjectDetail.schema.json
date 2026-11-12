@@ -1,0 +1,288 @@
+{
+  "$defs": {
+    "DeliveryStatus": {
+      "description": "Derived from the buyer's LATEST verified delivery decision. Never stored, never settable by a client.",
+      "enum": [
+        "NONE",
+        "ACKNOWLEDGED_ONLY",
+        "ACCEPTED",
+        "DISPUTED"
+      ],
+      "title": "DeliveryStatus",
+      "type": "string"
+    },
+    "OperationState": {
+      "description": "Local state of an in-flight or interrupted provider operation (crash/ambiguity recovery).",
+      "enum": [
+        "RESERVED",
+        "CREATING",
+        "CREATE_UNCERTAIN",
+        "CREATE_FAILED",
+        "READY",
+        "SEND_PENDING",
+        "SEND_UNCERTAIN"
+      ],
+      "title": "OperationState",
+      "type": "string"
+    },
+    "PaymentLink": {
+      "description": "Server-produced payment summary. Every financial field is derived from provider evidence.",
+      "properties": {
+        "amount_minor": {
+          "maximum": 2000000000,
+          "minimum": 1,
+          "title": "Amount Minor",
+          "type": "integer"
+        },
+        "amount_paid_minor": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Amount Paid Minor",
+          "type": "integer"
+        },
+        "amount_refunded_minor": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Amount Refunded Minor",
+          "type": "integer"
+        },
+        "checked_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checked At"
+        },
+        "created_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Created At"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "title": "Currency",
+          "type": "string"
+        },
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Id"
+        },
+        "invoice_state": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ProviderInvoiceState"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "operation_state": {
+          "$ref": "#/$defs/OperationState",
+          "default": "READY"
+        },
+        "paypal_invoice_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Paypal Invoice Id"
+        },
+        "paypal_transaction_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Paypal Transaction Id"
+        },
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "provider": {
+          "$ref": "#/$defs/PaymentProviderName",
+          "default": "MOCK_PAYPAL"
+        },
+        "provider_status": {
+          "$ref": "#/$defs/PaymentProviderStatus",
+          "default": "UNVERIFIED"
+        },
+        "replaces_payment_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Replaces Payment Id"
+        },
+        "scope_record_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scope Record Id"
+        },
+        "verification_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Verification Note"
+        }
+      },
+      "required": [
+        "project_id",
+        "currency",
+        "amount_minor"
+      ],
+      "title": "PaymentLink",
+      "type": "object"
+    },
+    "PaymentProviderName": {
+      "description": "Which backend produced a payment record. MOCK_PAYPAL is never a real transaction;\nPAYPAL_SANDBOX is PayPal's test environment, never real money. PAYPAL (live) is not implemented.",
+      "enum": [
+        "MOCK_PAYPAL",
+        "PAYPAL_SANDBOX",
+        "PAYPAL"
+      ],
+      "title": "PaymentProviderName",
+      "type": "string"
+    },
+    "PaymentProviderStatus": {
+      "description": "Financial state derived ONLY from verified provider evidence by the reconciliation path.\nNever accepted from a client.",
+      "enum": [
+        "UNVERIFIED",
+        "PENDING",
+        "PARTIALLY_PAID",
+        "PAID",
+        "PARTIALLY_REFUNDED",
+        "REFUNDED",
+        "CANCELLED",
+        "NEEDS_REVIEW"
+      ],
+      "title": "PaymentProviderStatus",
+      "type": "string"
+    },
+    "ProjectStatus": {
+      "enum": [
+        "DRAFT",
+        "INVOICED",
+        "PAID",
+        "DELIVERED",
+        "DISPUTED"
+      ],
+      "title": "ProjectStatus",
+      "type": "string"
+    },
+    "ProviderInvoiceState": {
+      "description": "PayPal Invoicing v2 invoice lifecycle status (what the provider reports, not proof of payment).",
+      "enum": [
+        "DRAFT",
+        "SENT",
+        "SCHEDULED",
+        "UNPAID",
+        "PAYMENT_PENDING",
+        "PARTIALLY_PAID",
+        "PAID",
+        "MARKED_AS_PAID",
+        "PARTIALLY_REFUNDED",
+        "REFUNDED",
+        "MARKED_AS_REFUNDED",
+        "CANCELLED"
+      ],
+      "title": "ProviderInvoiceState",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "delivery_status": {
+      "$ref": "#/$defs/DeliveryStatus",
+      "default": "NONE"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "payments": {
+      "items": {
+        "$ref": "#/$defs/PaymentLink"
+      },
+      "title": "Payments",
+      "type": "array"
+    },
+    "seller_id": {
+      "title": "Seller Id",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/ProjectStatus"
+    },
+    "title": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "seller_id",
+    "title",
+    "status",
+    "created_at"
+  ],
+  "title": "ProjectDetail",
+  "type": "object"
+}

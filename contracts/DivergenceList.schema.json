@@ -1,0 +1,79 @@
+{
+  "$defs": {
+    "DivergenceView": {
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "detail": {
+          "additionalProperties": true,
+          "title": "Detail",
+          "type": "object"
+        },
+        "order_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Order Ids",
+          "type": "array"
+        },
+        "payment_id": {
+          "title": "Payment Id",
+          "type": "string"
+        },
+        "suggested_plan_kind": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Suggested Plan Kind"
+        }
+      },
+      "required": [
+        "code",
+        "payment_id",
+        "order_ids",
+        "detail",
+        "suggested_plan_kind"
+      ],
+      "title": "DivergenceView",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "divergences": {
+      "items": {
+        "$ref": "#/$defs/DivergenceView"
+      },
+      "title": "Divergences",
+      "type": "array"
+    },
+    "integration_health": {
+      "additionalProperties": true,
+      "title": "Integration Health",
+      "type": "object"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "simulated": {
+      "const": true,
+      "default": true,
+      "title": "Simulated",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "project_id",
+    "divergences",
+    "integration_health"
+  ],
+  "title": "DivergenceList",
+  "type": "object"
+}

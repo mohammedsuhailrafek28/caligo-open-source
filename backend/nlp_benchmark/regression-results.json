@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "all_files_executed": true,
+  "file_count": 41,
+  "totals": {
+    "tests": 1338,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  },
+  "batches": [
+    {
+      "files": [
+        "diagnosis_tests/test_diagnosis.py",
+        "health_tests/test_health.py",
+        "nlp_tests/test_adapter.py",
+        "nlp_tests/test_logs.py",
+        "nlp_tests/test_real_stanza.py",
+        "tests/test_analysis.py"
+      ],
+      "exit_code": 0,
+      "tests": 144,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "rechecked_after": "Final log-parser and provenance security refinements"
+    },
+    {
+      "files": [
+        "tests/test_auth.py",
+        "tests/test_buyer_approvals.py",
+        "tests/test_contracts.py",
+        "tests/test_demo_backend.py",
+        "tests/test_demo_flow.py",
+        "tests/test_demo_recovery_integrated.py"
+      ],
+      "exit_code": 0,
+      "tests": 191,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_dev_outbox.py",
+        "tests/test_docs_consistency.py",
+        "tests/test_evidence_artifacts.py",
+        "tests/test_evidence_report.py",
+        "tests/test_foundation.py",
+        "tests/test_hold_release_integrity.py"
+      ],
+      "exit_code": 0,
+      "tests": 110,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_instruction_integrity.py",
+        "tests/test_instruction_verification.py",
+        "tests/test_migrations.py",
+        "tests/test_payment_observations.py",
+        "tests/test_payments.py",
+        "tests/test_paypal_adapter.py"
+      ],
+      "exit_code": 0,
+      "tests": 287,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_project_lifecycle.py",
+        "tests/test_projects.py",
+        "tests/test_r1_hardening.py",
+        "tests/test_r2_acceptance.py",
+        "tests/test_r3_acceptance.py",
+        "tests/test_recovery_cases.py"
+      ],
+      "exit_code": 0,
+      "tests": 143,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_s4_integration.py",
+        "tests/test_sandbox_flow.py",
+        "tests/test_sandbox_readonly.py",
+        "tests/test_sandbox_smoke.py",
+        "tests/test_schema_adoption.py",
+        "tests/test_scope_baselines.py"
+      ],
+      "exit_code": 0,
+      "tests": 320,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "files": [
+        "tests/test_secret_scan.py",
+        "tests/test_stage2d_fixes.py",
+        "tests/test_state_recovery.py",
+        "tests/test_state_simulation.py",
+        "tests/test_unified_report.py"
+      ],
+      "exit_code": 0,
+      "tests": 143,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "recheck_note": "All seven batches passed; batch 1 was re-run after the final NLP security refinements. Other application modules were unchanged."
+}

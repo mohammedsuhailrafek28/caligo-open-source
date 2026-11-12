@@ -1,0 +1,43 @@
+{
+  "additionalProperties": false,
+  "description": "No provider status, project status or owner can be supplied: unknown fields are rejected.",
+  "properties": {
+    "amount_minor": {
+      "maximum": 2000000000,
+      "minimum": 1,
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "currency": {
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "type": "string"
+    },
+    "recipient_email": {
+      "format": "email",
+      "title": "Recipient Email",
+      "type": "string"
+    },
+    "replaces_payment_id": {
+      "anyOf": [
+        {
+          "maxLength": 36,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Replaces Payment Id"
+    }
+  },
+  "required": [
+    "currency",
+    "amount_minor",
+    "recipient_email"
+  ],
+  "title": "InvoiceRequest",
+  "type": "object"
+}

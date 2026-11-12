@@ -1,0 +1,389 @@
+{
+  "$defs": {
+    "AuthenticatorTrustBasis": {
+      "enum": [
+        "OPERATOR_ESTABLISHED"
+      ],
+      "title": "AuthenticatorTrustBasis",
+      "type": "string"
+    },
+    "ChangeResolution": {
+      "enum": [
+        "WITHDRAWN"
+      ],
+      "title": "ChangeResolution",
+      "type": "string"
+    },
+    "HoldReason": {
+      "enum": [
+        "UNVERIFIED_INSTRUCTION_CHANGE",
+        "INSTRUCTION_INTEGRITY_FAILURE",
+        "MERCHANT_MISMATCH",
+        "PROVIDER_MISMATCH",
+        "INSTRUCTION_REQUIRED"
+      ],
+      "title": "HoldReason",
+      "type": "string"
+    },
+    "HoldStatus": {
+      "description": "A hold blocks operations performed through Caligo only. It never freezes or redirects funds held by PayPal.",
+      "properties": {
+        "active": {
+          "title": "Active",
+          "type": "boolean"
+        },
+        "pending_change_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Pending Change Ids",
+          "type": "array"
+        },
+        "reasons": {
+          "items": {
+            "$ref": "#/$defs/HoldReason"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "release_requires": {
+          "default": "BUYER_SIDE_VERIFICATION",
+          "title": "Release Requires",
+          "type": "string"
+        },
+        "scope": {
+          "default": "CALIGO_OPERATIONS_ONLY",
+          "title": "Scope",
+          "type": "string"
+        }
+      },
+      "required": [
+        "active",
+        "reasons",
+        "pending_change_ids"
+      ],
+      "title": "HoldStatus",
+      "type": "object"
+    },
+    "InstructionChangeVerificationView": {
+      "properties": {
+        "applied_instruction_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Applied Instruction Id"
+        },
+        "change_id": {
+          "title": "Change Id",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "from_fingerprint": {
+          "title": "From Fingerprint",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "outcome": {
+          "$ref": "#/$defs/VerificationOutcome"
+        },
+        "proposed_fingerprint": {
+          "title": "Proposed Fingerprint",
+          "type": "string"
+        },
+        "trust_basis": {
+          "$ref": "#/$defs/AuthenticatorTrustBasis"
+        }
+      },
+      "required": [
+        "id",
+        "change_id",
+        "outcome",
+        "trust_basis",
+        "applied_instruction_id",
+        "from_fingerprint",
+        "proposed_fingerprint",
+        "created_at"
+      ],
+      "title": "InstructionChangeVerificationView",
+      "type": "object"
+    },
+    "InstructionChangeView": {
+      "properties": {
+        "amount_minor": {
+          "title": "Amount Minor",
+          "type": "integer"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "currency": {
+          "title": "Currency",
+          "type": "string"
+        },
+        "from_fingerprint": {
+          "title": "From Fingerprint",
+          "type": "string"
+        },
+        "from_instruction_id": {
+          "title": "From Instruction Id",
+          "type": "string"
+        },
+        "holds_payment_operations": {
+          "default": true,
+          "title": "Holds Payment Operations",
+          "type": "boolean"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "merchant_email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Merchant Email"
+        },
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "proposed_fingerprint": {
+          "title": "Proposed Fingerprint",
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "#/$defs/InstructionProvenance"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "recipient_email": {
+          "title": "Recipient Email",
+          "type": "string"
+        },
+        "resolution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ChangeResolution"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "verification": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/InstructionChangeVerificationView"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "project_id",
+        "from_instruction_id",
+        "from_fingerprint",
+        "merchant_email",
+        "recipient_email",
+        "currency",
+        "amount_minor",
+        "proposed_fingerprint",
+        "reason",
+        "provenance",
+        "created_at"
+      ],
+      "title": "InstructionChangeView",
+      "type": "object"
+    },
+    "InstructionProvenance": {
+      "enum": [
+        "SELLER_ENTERED",
+        "INVOICE_REQUEST"
+      ],
+      "title": "InstructionProvenance",
+      "type": "string"
+    },
+    "InstructionVerification": {
+      "enum": [
+        "PENDING_VERIFICATION",
+        "VERIFIED_BY_ENROLLED_SECOND_CHANNEL"
+      ],
+      "title": "InstructionVerification",
+      "type": "string"
+    },
+    "PaymentInstructionView": {
+      "properties": {
+        "amount_minor": {
+          "title": "Amount Minor",
+          "type": "integer"
+        },
+        "chain_sha256": {
+          "title": "Chain Sha256",
+          "type": "string"
+        },
+        "context": {
+          "additionalProperties": true,
+          "title": "Context",
+          "type": "object"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "currency": {
+          "title": "Currency",
+          "type": "string"
+        },
+        "fingerprint": {
+          "title": "Fingerprint",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "merchant_email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Merchant Email"
+        },
+        "previous_instruction_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Previous Instruction Id"
+        },
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "#/$defs/InstructionProvenance"
+        },
+        "provider": {
+          "$ref": "#/$defs/PaymentProviderName"
+        },
+        "recipient_email": {
+          "title": "Recipient Email",
+          "type": "string"
+        },
+        "verification_status": {
+          "$ref": "#/$defs/InstructionVerification",
+          "default": "PENDING_VERIFICATION"
+        },
+        "version": {
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "project_id",
+        "version",
+        "provider",
+        "merchant_email",
+        "recipient_email",
+        "currency",
+        "amount_minor",
+        "context",
+        "fingerprint",
+        "chain_sha256",
+        "previous_instruction_id",
+        "provenance",
+        "created_at"
+      ],
+      "title": "PaymentInstructionView",
+      "type": "object"
+    },
+    "PaymentProviderName": {
+      "description": "Which backend produced a payment record. MOCK_PAYPAL is never a real transaction;\nPAYPAL_SANDBOX is PayPal's test environment, never real money. PAYPAL (live) is not implemented.",
+      "enum": [
+        "MOCK_PAYPAL",
+        "PAYPAL_SANDBOX",
+        "PAYPAL"
+      ],
+      "title": "PaymentProviderName",
+      "type": "string"
+    },
+    "VerificationOutcome": {
+      "enum": [
+        "APPLIED",
+        "REJECTED"
+      ],
+      "title": "VerificationOutcome",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "hold": {
+      "$ref": "#/$defs/HoldStatus"
+    },
+    "instruction": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PaymentInstructionView"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "pending_changes": {
+      "items": {
+        "$ref": "#/$defs/InstructionChangeView"
+      },
+      "title": "Pending Changes",
+      "type": "array"
+    },
+    "versions": {
+      "title": "Versions",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "instruction",
+    "versions",
+    "pending_changes",
+    "hold"
+  ],
+  "title": "PaymentInstructionState",
+  "type": "object"
+}

@@ -1,0 +1,128 @@
+{
+  "$defs": {
+    "ChangeStatus": {
+      "enum": [
+        "PROPOSED",
+        "APPROVED",
+        "REJECTED",
+        "SUPERSEDED"
+      ],
+      "title": "ChangeStatus",
+      "type": "string"
+    },
+    "RequirementDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "default": "",
+          "maxLength": 2000,
+          "title": "Description",
+          "type": "string"
+        },
+        "key": {
+          "pattern": "^[A-Z][A-Z0-9_-]{0,23}$",
+          "title": "Key",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "title"
+      ],
+      "title": "RequirementDraft",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "base_baseline_id": {
+      "title": "Base Baseline Id",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "proposed_requirements": {
+      "items": {
+        "$ref": "#/$defs/RequirementDraft"
+      },
+      "title": "Proposed Requirements",
+      "type": "array"
+    },
+    "resolved_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Resolved At"
+    },
+    "resolved_baseline_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Resolved Baseline Id"
+    },
+    "status": {
+      "$ref": "#/$defs/ChangeStatus"
+    },
+    "supersedes_change_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Supersedes Change Id"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "title",
+    "description",
+    "proposed_requirements",
+    "status",
+    "base_baseline_id",
+    "resolved_baseline_id",
+    "supersedes_change_id",
+    "created_at",
+    "resolved_at"
+  ],
+  "title": "ScopeChangeView",
+  "type": "object"
+}

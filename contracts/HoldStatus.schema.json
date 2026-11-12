@@ -1,0 +1,53 @@
+{
+  "$defs": {
+    "HoldReason": {
+      "enum": [
+        "UNVERIFIED_INSTRUCTION_CHANGE",
+        "INSTRUCTION_INTEGRITY_FAILURE",
+        "MERCHANT_MISMATCH",
+        "PROVIDER_MISMATCH",
+        "INSTRUCTION_REQUIRED"
+      ],
+      "title": "HoldReason",
+      "type": "string"
+    }
+  },
+  "description": "A hold blocks operations performed through Caligo only. It never freezes or redirects funds held by PayPal.",
+  "properties": {
+    "active": {
+      "title": "Active",
+      "type": "boolean"
+    },
+    "pending_change_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Pending Change Ids",
+      "type": "array"
+    },
+    "reasons": {
+      "items": {
+        "$ref": "#/$defs/HoldReason"
+      },
+      "title": "Reasons",
+      "type": "array"
+    },
+    "release_requires": {
+      "default": "BUYER_SIDE_VERIFICATION",
+      "title": "Release Requires",
+      "type": "string"
+    },
+    "scope": {
+      "default": "CALIGO_OPERATIONS_ONLY",
+      "title": "Scope",
+      "type": "string"
+    }
+  },
+  "required": [
+    "active",
+    "reasons",
+    "pending_change_ids"
+  ],
+  "title": "HoldStatus",
+  "type": "object"
+}

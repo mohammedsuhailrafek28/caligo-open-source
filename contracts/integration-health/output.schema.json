@@ -1,0 +1,220 @@
+{
+  "$defs": {
+    "Capability": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "enum": [
+            "configuration_observed",
+            "provider_connectivity_observed",
+            "end_to_end_transaction_observed",
+            "webhook_processing_observed"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.:-]+$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "evidence_ids"
+      ],
+      "title": "Capability",
+      "type": "object"
+    },
+    "Fact": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "field": {
+          "enum": [
+            "source",
+            "kind",
+            "entity_id",
+            "payment_id",
+            "status",
+            "event_id",
+            "effect_key"
+          ],
+          "title": "Field",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "field",
+        "value"
+      ],
+      "title": "Fact",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "integration_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Integration Id",
+      "type": "string"
+    },
+    "environment": {
+      "enum": [
+        "simulation",
+        "sandbox"
+      ],
+      "title": "Environment",
+      "type": "string"
+    },
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "UNKNOWN",
+        "UNVERIFIED",
+        "DEGRADED",
+        "TRANSACTION_VERIFIED"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "supported_capabilities": {
+      "items": {
+        "$ref": "#/$defs/Capability"
+      },
+      "title": "Supported Capabilities",
+      "type": "array"
+    },
+    "missing_checks": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Checks",
+      "type": "array"
+    },
+    "stale_evidence_warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Stale Evidence Warnings",
+      "type": "array"
+    },
+    "incomplete_evidence_warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Incomplete Evidence Warnings",
+      "type": "array"
+    },
+    "supporting_evidence_ids": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_.:-]+$",
+        "type": "string"
+      },
+      "title": "Supporting Evidence Ids",
+      "type": "array"
+    },
+    "contradictory_evidence_ids": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_.:-]+$",
+        "type": "string"
+      },
+      "title": "Contradictory Evidence Ids",
+      "type": "array"
+    },
+    "last_successful_checks": {
+      "additionalProperties": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "title": "Last Successful Checks",
+      "type": "object"
+    },
+    "facts": {
+      "items": {
+        "$ref": "#/$defs/Fact"
+      },
+      "title": "Facts",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "suggested_next_diagnostic_action": {
+      "title": "Suggested Next Diagnostic Action",
+      "type": "string"
+    },
+    "human_review_required": {
+      "const": true,
+      "default": true,
+      "title": "Human Review Required",
+      "type": "boolean"
+    },
+    "production_certification": {
+      "const": false,
+      "default": false,
+      "title": "Production Certification",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "project_id",
+    "integration_id",
+    "environment",
+    "as_of",
+    "status",
+    "supported_capabilities",
+    "missing_checks",
+    "stale_evidence_warnings",
+    "incomplete_evidence_warnings",
+    "supporting_evidence_ids",
+    "contradictory_evidence_ids",
+    "last_successful_checks",
+    "facts",
+    "assumptions",
+    "suggested_next_diagnostic_action"
+  ],
+  "title": "HealthAssessment",
+  "type": "object"
+}

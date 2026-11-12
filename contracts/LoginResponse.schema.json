@@ -1,0 +1,49 @@
+{
+  "$defs": {
+    "SellerView": {
+      "properties": {
+        "display_name": {
+          "title": "Display Name",
+          "type": "string"
+        },
+        "email": {
+          "format": "email",
+          "title": "Email",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "display_name"
+      ],
+      "title": "SellerView",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "csrf_token": {
+      "title": "Csrf Token",
+      "type": "string"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    },
+    "seller": {
+      "$ref": "#/$defs/SellerView"
+    }
+  },
+  "required": [
+    "seller",
+    "csrf_token",
+    "expires_at"
+  ],
+  "title": "LoginResponse",
+  "type": "object"
+}

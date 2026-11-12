@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "buyer_email": {
+      "format": "email",
+      "title": "Buyer Email",
+      "type": "string"
+    },
+    "change_id": {
+      "maxLength": 36,
+      "minLength": 1,
+      "title": "Change Id",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 36,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "change_id",
+    "buyer_email"
+  ],
+  "title": "InstructionChallengeRequest",
+  "type": "object"
+}

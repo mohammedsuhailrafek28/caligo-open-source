@@ -1,0 +1,209 @@
+{
+  "$defs": {
+    "RecoveryPlanView": {
+      "properties": {
+        "approval": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Approval"
+        },
+        "created_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Created At"
+        },
+        "created_by_seller_id": {
+          "title": "Created By Seller Id",
+          "type": "string"
+        },
+        "evidence": {
+          "additionalProperties": true,
+          "title": "Evidence",
+          "type": "object"
+        },
+        "evidence_fingerprint": {
+          "title": "Evidence Fingerprint",
+          "type": "string"
+        },
+        "executable": {
+          "title": "Executable",
+          "type": "boolean"
+        },
+        "execution": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Execution"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "latest_version": {
+          "title": "Latest Version",
+          "type": "integer"
+        },
+        "payment_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Payment Id"
+        },
+        "plan_key": {
+          "title": "Plan Key",
+          "type": "string"
+        },
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "provider_fingerprint": {
+          "title": "Provider Fingerprint",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "state": {
+          "enum": [
+            "PROPOSED",
+            "NEEDS_REVIEW",
+            "BLOCKED",
+            "ADVISORY",
+            "APPROVED",
+            "EXECUTED"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "NEEDS_REVIEW",
+            "BLOCKED",
+            "ADVISORY"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/RecoveryStepView"
+          },
+          "title": "Steps",
+          "type": "array"
+        },
+        "superseded": {
+          "title": "Superseded",
+          "type": "boolean"
+        },
+        "version": {
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "project_id",
+        "plan_key",
+        "version",
+        "latest_version",
+        "superseded",
+        "kind",
+        "payment_id",
+        "status",
+        "state",
+        "steps",
+        "evidence",
+        "reasons",
+        "provider_fingerprint",
+        "evidence_fingerprint",
+        "created_by_seller_id",
+        "approval",
+        "execution",
+        "executable"
+      ],
+      "title": "RecoveryPlanView",
+      "type": "object"
+    },
+    "RecoveryStepView": {
+      "properties": {
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "step_id": {
+          "title": "Step Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "step_id",
+        "kind",
+        "description",
+        "params"
+      ],
+      "title": "RecoveryStepView",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "executed_now": {
+      "title": "Executed Now",
+      "type": "boolean"
+    },
+    "plan": {
+      "$ref": "#/$defs/RecoveryPlanView"
+    }
+  },
+  "required": [
+    "plan",
+    "executed_now"
+  ],
+  "title": "RecoveryExecutionResult",
+  "type": "object"
+}

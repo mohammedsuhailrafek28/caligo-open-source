@@ -1,0 +1,67 @@
+{
+  "$defs": {
+    "EvidenceFinding": {
+      "properties": {
+        "claim": {
+          "title": "Claim",
+          "type": "string"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        },
+        "source_refs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Refs",
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/EvidenceStatus"
+        }
+      },
+      "required": [
+        "claim",
+        "status",
+        "explanation"
+      ],
+      "title": "EvidenceFinding",
+      "type": "object"
+    },
+    "EvidenceStatus": {
+      "enum": [
+        "SUPPORTED",
+        "AMBIGUOUS",
+        "UNSUPPORTED"
+      ],
+      "title": "EvidenceStatus",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/EvidenceFinding"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "human_review_required": {
+      "const": true,
+      "default": true,
+      "title": "Human Review Required",
+      "type": "boolean"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "findings"
+  ],
+  "title": "ScopeAnalysis",
+  "type": "object"
+}
