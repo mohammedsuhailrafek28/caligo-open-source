@@ -82,4 +82,4 @@ Run these from the repository root. This downloads the pinned English model file
 
 ## Licence
 
-MIT, see `LICENSE`. Third-party notices: `THIRD_PARTY_NOTICES.md`. Not affiliated with or endorsed by PayPal.
+MIT, see `LICENSE`. Portions of the payee registry are adapted from Swathi's MIT-licensed prototype (Copyright (c) 2026 Swathi); her complete original notice and the list of adapted files are in `THIRD_PARTY_NOTICES.md`, which must be kept with any copy of those portions. Not affiliated with or endorsed by PayPal.
